@@ -24,12 +24,3 @@ export const Register: React.FC<RegisterPropsType> = ( props ) => {
 		</div>
 	);
 };
-
-//{"addedUser":
-// {"_id":"6471cd0d298dd73f64cd9721",
-// "email":"zaitsev@gmail.com",
-// "rememberMe":false,"isAdmin":false,
-// "name":"zaitsev@gmail.com","verified":false,
-// "publicCardPacksCount":0,
-// "created":"2023-05-27T09:27:41.111Z",
-// "updated":"2023-05-27T09:27:41.111Z","__v":0}}

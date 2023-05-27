@@ -7,6 +7,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import { Register } from "features/auth/Register/Register";
 import App from "app/App";
+import { Login } from "features/auth/Login/Login";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/login",
-        element: <h1>Login</h1>,
+        element: <Login/>,
     },
     {
         path: "/register",
