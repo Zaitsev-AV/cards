@@ -6,7 +6,8 @@ const slice = createSlice( {
 	initialState: {
 		error: null as string | null,
 		isLoading: true,
-		isAppInitialized: false
+		isAppInitialized: false,
+		isLoggedIn: false
 	},
 	reducers: {
 		setIsLoading: (state, action: PayloadAction<{isLoading: boolean}>) => {
@@ -15,7 +16,7 @@ const slice = createSlice( {
 	},
 	extraReducers: builder =>  {
 		builder.addCase(authThunks.me.fulfilled, (state, action)=> {
-			state.isAppInitialized = true
+			state.isLoading = true
 		})
 			.addCase(authThunks.logOut.fulfilled, (state, action)=> {
 				state.isAppInitialized = false

@@ -16,6 +16,7 @@ export const authApi = {
 	logOut: ()=> {
 		return instance.delete<{info: string}>('auth/me')
 	}
+	// todo доделать запросы на восстановление пароля, изменения пароля и блокировки аккаунта.
 }
 
 //types
