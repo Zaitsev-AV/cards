@@ -6,6 +6,15 @@ export const authApi = {
 	},
 	login: (arg: ArgLoginType) => {
 		return instance.post<ProfileType>('auth/login', arg)
+	},
+	me: () => {
+		return instance.post<ProfileType>('auth/me', {})
+	},
+	upDateUser: (arg: ArgUpdateUserType)=> {
+		return instance.put<UpdateUserType>('auth/me', arg)
+	},
+	logOut: ()=> {
+		return instance.delete<{info: string}>('auth/me')
 	}
 }
 
@@ -37,6 +46,17 @@ export type RegisterResponseType = {
 	tokenDeathTime: number;
 }
 
+export type ArgUpdateUserType = {
+	name?: string
+	avatar?: string
+}
+
+export type UpdateUserType = {
+	updatedUser: ProfileType;
+	token: string;
+	tokenDeathTime: number;
+}
+
 
 
 
@@ -47,13 +67,12 @@ export type RegisterResponseType = {
 
 
 //OMIT - удаляет из типа который передаем первым в джененрик, свойства, которые указываем в кавычках
-
 // export type ArgType = Omit<ArgLoginType, 'rememberMe'>
 
 //PICK - выбирает из родительского типа указанные.
 // export type PickType = Pick<ArgLoginType, 'password' | 'email'>
 
-//PARTIAL - делвет все поля не обязательными
+//PARTIAL - делает все поля не обязательными
 // type ArgLoginType2 = Partial<ArgLoginType>
 
 // type UserType = {

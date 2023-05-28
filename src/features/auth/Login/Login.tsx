@@ -16,10 +16,25 @@ export const Login: React.FC<LoginPropsType> = ( props ) => {
 		}
 		dispatch(authThunks.login(payload))
 	}
+	
+	const meRequestHandler = () => {
+		dispatch(authThunks.me())
+	}
+	
+	const upDateUserHandler = () => {
+		dispatch(authThunks.upDateUser({name: 'Alexander'}))
+	}
+	
+	const logOutHandler = () => {
+		dispatch(authThunks.logOut())
+	}
 	return (
 		<div>
 			<h1>Login</h1>
 			<button onClick={loginHandler}>Login</button>
+			<button onClick={meRequestHandler}>me request</button>
+			<button onClick={upDateUserHandler}>update request</button>
+			<button onClick={logOutHandler}>log out</button>
 		</div>
 	);
 };

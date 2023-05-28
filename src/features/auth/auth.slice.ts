@@ -1,5 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ArgLoginType, ArgRegisterType, authApi, ProfileType } from "features/auth/auth.api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+	ArgLoginType,
+	ArgRegisterType,
+	authApi,
+	ProfileType,
+	ArgUpdateUserType,
+	UpdateUserType
+} from "features/auth/auth.api";
 import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
 
 const slice = createSlice( {
@@ -12,6 +19,9 @@ const slice = createSlice( {
 		builder.addCase( login.fulfilled, ( state, action ) => {
 				state.profile = action.payload.profile
 			} )
+			.addCase(upDateUser.fulfilled, (state, action) => {
+				state.profile = action.payload.updatedUser
+			})
 	}
 } )
 
@@ -26,9 +36,26 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 	return { profile: res.data }
 } )
 
+const me = createAsyncThunk( 'auth/me', async () => {
+	await authApi.me()
+} )
+
+const upDateUser = createAsyncThunk<UpdateUserType, ArgUpdateUserType>( 'auth/upDateUser', async ( arg) => {
+	const res = await authApi.upDateUser(arg)
+	    console.log(res.data)
+	return res.data
+} )
+
+const logOut = createAsyncThunk('auth/logOut', async ()=> {
+	
+	const res = await authApi.logOut()
+	    console.log(res.data.info)
+	return res.data.info
+})
+
 export const authReducer = slice.reducer
 // export const authActions = slice.actions
-export const authThunks = { register, login }
+export const authThunks = { register, login, me, upDateUser, logOut}
 
 
 // const login = createAsyncThunk( 'auth/login', ( arg: ArgLoginType, thunkAPI ) => {
