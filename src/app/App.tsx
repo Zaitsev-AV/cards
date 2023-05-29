@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { appActions } from "app/app.slice";
 import { authThunks } from "features/auth/auth.slice";
 import { Layout } from "common/components/layout/Layout";
+import { CustomLoader } from "../common/components/customLoader/CustomLoader";
 
 function App() {
   const isLoading = useAppSelector<boolean>( ( state ) => state.app.isLoading )
@@ -20,7 +21,7 @@ function App() {
   
   return (
       <div className="App">
-        { !isLoading && isLoggedIn !== null ? <Layout/> : <h1>Preloader</h1>}
+        { !isLoading && isLoggedIn !== null ? <Layout/> : <CustomLoader/>}
       </div>
   );
 }
