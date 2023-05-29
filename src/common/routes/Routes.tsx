@@ -12,11 +12,12 @@ export const router = createBrowserRouter([
 		element: <App/>,
 		children: [
 			{
-				path: "/packs",
+				path: "/",
 				element: <AuthRedirect/>, // нужно для проверки если авторизован то пойдет по ветке (children/packs) иначе перенаправит на login
 				children: [
 					{
-						path: "/packs",
+						index: true,// индексный маршрут, то есть когда пользователь заходит на основной маршрут будет
+						// отображаться компонент связанный с индексным маршрутом
 						element: <h1>PACKS</h1>
 					}
 				]

@@ -8,6 +8,7 @@ export type AuthRedirectPropsType = {
 export const AuthRedirect: React.FC<AuthRedirectPropsType> = ( props ) => {
 	const isLoggedIn = useAppSelector<boolean>(state => state.app.isLoggedIn)
 	const location = useLocation()
+	    console.log('AuthRedirect called')
 	const {} = props
 	if ( !isLoggedIn ) return <Navigate to={'/auth/login'} state={{from: location}}/>
 	// state={{from: location}} эта запись используется для сохранения информации о
