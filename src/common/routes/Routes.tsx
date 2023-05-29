@@ -10,6 +10,7 @@ export const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App/>,
+		errorElement: <h1>Error</h1>,
 		children: [
 			{
 				path: "/",
@@ -27,12 +28,16 @@ export const router = createBrowserRouter([
 				element: <Auth/>,
 				children: [
 					{
+						path: "/auth/register",
+						element: <Register/>,
+					},
+					{
 						path: "/auth/login",
 						element: <Login/>,
 					},
 					{
-						path: "/auth/register",
-						element: <Register/>,
+						path: " /auth/forgot",
+						element: <Login/>,
 					},
 				]
 			},

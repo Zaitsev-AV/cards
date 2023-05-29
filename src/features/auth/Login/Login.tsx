@@ -33,7 +33,7 @@ export const Login: React.FC<LoginPropsType> = ( props ) => {
 	return (
 		<div className={s.wrapper}>
 			<h1>Login</h1>
-			<Form/>
+			<Form format={"Login"}/>
 			<>
 				
 				<button onClick={loginHandler}>Login</button>
