@@ -10,6 +10,7 @@
     background-color: #171717;
     border-radius: 25px;
     transition: .4s ease-in-out;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .form:hover {
@@ -18,10 +19,13 @@
 }
 
 .heading {
+    /*display: flex;*/
     text-align: center;
-    margin: 2em;
+    margin: 35px;
     color: rgb(255, 255, 255);
-    font-size: 1.2em;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
 }
 
 .field {
@@ -79,7 +83,7 @@
 }
 
 .button1:hover {
-    background-color: black;
+    background-color: #5d8c78;
     color: white;
 }
 
@@ -94,7 +98,7 @@
 }
 
 .button2:hover {
-    background-color: black;
+    background-color: #4a5450;
     color: white;
 }
 
@@ -110,6 +114,16 @@
 }
 
 .button3:hover {
-    background-color: red;
+    background-color: #24a139;
+    color: white;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
     color: white;
 }

@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Login } from "features/auth/Login/Login";
-import { Register } from "features/auth/Register/Register";
+import { Login } from "features/auth/login/Login";
+import { Register } from "features/auth/register/Register";
 import React from "react";
 import App from "app/App";
 import { Auth } from "features/auth/Auth";
 import { AuthRedirect } from "common/authRedirect/AuthRedirect";
+import { ForgotPasswordForm } from "common/components/forms/ForgotPasswordForm";
+import { ForgotPassword } from "features/auth/forgot-password/ForgotPassword";
 
 export const router = createBrowserRouter([
 	{
@@ -36,8 +38,8 @@ export const router = createBrowserRouter([
 						element: <Login/>,
 					},
 					{
-						path: " /auth/forgot",
-						element: <Login/>,
+						path: "/auth/forgot",
+						element: <ForgotPassword/>,
 					},
 				]
 			},

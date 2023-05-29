@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import s from './Login.module.css'
-import { Form } from "common/form/Form";
+import { Form } from "common/components/forms/Form";
 
 export type LoginPropsType = {
 
