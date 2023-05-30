@@ -6,7 +6,8 @@ import App from "app/App";
 import { Auth } from "features/auth/Auth";
 import { AuthRedirect } from "common/authRedirect/AuthRedirect";
 import { ForgotPasswordForm } from "common/components/forms/ForgotPasswordForm";
-import { ForgotPassword } from "features/auth/forgot-password/ForgotPassword";
+import { ForgotPassword } from "features/auth/forgotPassword/ForgotPassword";
+import { CheckEmail } from "features/auth/checkEmail/CheckEmail";
 
 export const router = createBrowserRouter([
 	{
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
 					{
 						path: "/auth/forgot",
 						element: <ForgotPassword/>,
+					},
+					{
+						path: "/auth/checkEmail",
+						element: <CheckEmail/>,
 					},
 				]
 			},
