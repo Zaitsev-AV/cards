@@ -46,6 +46,7 @@ const me = createAsyncThunk<{ profile: ProfileType }, void>( 'auth/me', async ( 
 	const { dispatch, rejectWithValue } = thunkAPI
 	try {
 		const res = await authApi.me()
+		dispatch(appActions.setIsLoggedIn({isLoggedIn: true}))
 		return { profile: res.data }
 	} catch ( e ) {
 		console.warn( e )

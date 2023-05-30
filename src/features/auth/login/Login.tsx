@@ -1,8 +1,9 @@
 import React from 'react';
-import { useAppDispatch } from "app/hooks";
+import { useAppDispatch, useAppSelector } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import s from './Login.module.css'
 import { SignInForm } from "common/components/forms/SignInForm";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export type LoginPropsType = {
 
@@ -10,6 +11,9 @@ export type LoginPropsType = {
 export const Login: React.FC<LoginPropsType> = ( props ) => {
 	const {} = props
 	const dispatch = useAppDispatch()
+	const isLoggedIn = useAppSelector<boolean>( ( state ) => state.app.isLoggedIn )
+	const location = useLocation()
+	const navigate = useNavigate()
 	const loginHandler = () => {
 		const payload = {
 			email: "zaitsev@gmail.com",
@@ -29,6 +33,10 @@ export const Login: React.FC<LoginPropsType> = ( props ) => {
 	
 	const logOutHandler = () => {
 		dispatch(authThunks.logOut())
+	}
+
+	if ( isLoggedIn ) {
+		navigate('/')
 	}
 	return (
 		<div className={s.wrapper}>
