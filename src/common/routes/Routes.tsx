@@ -5,9 +5,9 @@ import React from "react";
 import App from "app/App";
 import { Auth } from "features/auth/Auth";
 import { AuthRedirect } from "common/authRedirect/AuthRedirect";
-import { ForgotPasswordForm } from "common/components/forms/ForgotPasswordForm";
 import { ForgotPassword } from "features/auth/forgotPassword/ForgotPassword";
 import { CheckEmail } from "features/auth/checkEmail/CheckEmail";
+import { NewPassword } from "features/auth/newPassword/NewPassword";
 
 export const router = createBrowserRouter([
 	{
@@ -43,8 +43,12 @@ export const router = createBrowserRouter([
 						element: <ForgotPassword/>,
 					},
 					{
-						path: "/auth/checkEmail",
+						path: "/auth/check-email",
 						element: <CheckEmail/>,
+					},
+					{
+						path: "/auth/set-new-password",
+						element: <NewPassword/>,
 					},
 				]
 			},

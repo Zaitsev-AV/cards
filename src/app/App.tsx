@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { appActions } from "app/app.slice";
 import { authThunks } from "features/auth/auth.slice";
 import { Layout } from "common/components/layout/Layout";
-import { CustomLoader } from "../common/components/customLoader/CustomLoader";
+import { CustomLoader } from "common/components/customLoader/CustomLoader";
 
 function App() {
   const isLoading = useAppSelector<boolean>( ( state ) => state.app.isLoading )

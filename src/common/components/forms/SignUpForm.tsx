@@ -7,7 +7,7 @@ import s from "common/components/forms/Form.module.css";
 import { FormValues } from "common/components/forms/Form";
 
 
-export const SignUpForm: React.FC = (  ) => {
+export const SignUpForm: React.FC = () => {
 	
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
@@ -71,7 +71,7 @@ export const SignUpForm: React.FC = (  ) => {
 								<button className={ s.button1 } type={'submit'}>Submit</button>
 							</div>
 						</form>
-						<button className={ s.button2 } onClick={signInRedirect}>Sign In</button>
+						<button className={ s.button3 } onClick={signInRedirect}>Sign In</button>
 					</div>
 	);
 };

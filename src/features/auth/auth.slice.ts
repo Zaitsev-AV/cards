@@ -2,13 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
 	ArgLoginType,
 	ArgRegisterType,
+	ArgUpdateUserType,
 	authApi,
 	ProfileType,
-	ArgUpdateUserType,
 	UpdateUserType
 } from "features/auth/auth.api";
 import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
+import { appActions } from "app/app.slice";
+import { RootState } from "app/store";
 
+export type ThunkAPIType = {
+	rejectValue: string
+	state: RootState
+}
 const slice = createSlice( {
 	name: 'auth',
 	initialState: {
@@ -36,8 +42,18 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 	return { profile: res.data }
 } )
 
-const me = createAsyncThunk( 'auth/me', async () => {
-	await authApi.me()
+const me = createAsyncThunk<{ profile: ProfileType }, void>( 'auth/me', async ( arg, thunkAPI ) => {
+	const { dispatch, rejectWithValue } = thunkAPI
+	try {
+		const res = await authApi.me()
+		return { profile: res.data }
+	} catch ( e ) {
+		console.warn( e )
+		return rejectWithValue( null );
+	} finally {
+		dispatch(appActions.appInitialized({initialized: true}))
+	}
+	
 } )
 
 const upDateUser = createAsyncThunk<UpdateUserType, ArgUpdateUserType>( 'auth/upDateUser', async ( arg) => {

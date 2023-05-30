@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import s from './Login.module.css'
-import { Form } from "common/components/forms/Form";
+import { SignInForm } from "common/components/forms/SignInForm";
 
 export type LoginPropsType = {
 
@@ -33,9 +33,8 @@ export const Login: React.FC<LoginPropsType> = ( props ) => {
 	return (
 		<div className={s.wrapper}>
 			<h1>Login</h1>
-			<Form format={"Login"}/>
+			<SignInForm/>
 			<>
-				
 				<button onClick={loginHandler}>Login</button>
 				<button onClick={meRequestHandler}>me request</button>
 				<button onClick={upDateUserHandler}>update request</button>
