@@ -9,12 +9,8 @@ import {
 } from "features/auth/auth.api";
 import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
 import { appActions } from "app/app.slice";
-import { RootState } from "app/store";
 
-export type ThunkAPIType = {
-	rejectValue: string
-	state: RootState
-}
+
 const slice = createSlice( {
 	name: 'auth',
 	initialState: {
@@ -23,10 +19,14 @@ const slice = createSlice( {
 	reducers: {},
 	extraReducers: builder => {
 		builder.addCase( login.fulfilled, ( state, action ) => {
+			    console.log('login')
 				state.profile = action.payload.profile
 			} )
 			.addCase(upDateUser.fulfilled, (state, action) => {
 				state.profile = action.payload.updatedUser
+			})
+			.addCase(me.fulfilled, (state, action)=> {
+				state.profile = action.payload.profile
 			})
 	}
 } )

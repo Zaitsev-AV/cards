@@ -23,7 +23,11 @@ export const router = createBrowserRouter([
 						index: true,// индексный маршрут, то есть когда пользователь заходит на основной маршрут будет
 						// отображаться компонент связанный с индексным маршрутом
 						element: <h1>PACKS</h1>
-					}
+					},
+					{
+						path: "/profile",
+						element: <h1>Profile</h1>,
+					},
 				]
 			},
 			{
