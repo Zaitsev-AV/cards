@@ -1,0 +1,14 @@
+.editableText {
+    display: inline-block;
+}
+
+.error {
+    color: #d57575;
+    display: flex;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.text {
+    cursor: pointer;
+}

@@ -8,7 +8,7 @@ import { AuthRedirect } from "common/authRedirect/AuthRedirect";
 import { ForgotPassword } from "features/auth/forgotPassword/ForgotPassword";
 import { CheckEmail } from "features/auth/checkEmail/CheckEmail";
 import { NewPassword } from "features/auth/newPassword/NewPassword";
-import { Profile } from "common/components/profile/Profile";
+import { Profile } from "features/profile/Profile";
 
 export const router = createBrowserRouter([
 	{
