@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useState } from "react";
 import s from './EditableText.module.css'
 import pencil from "assets/pencil.svg";
 import { useAppDispatch } from "app/hooks";
@@ -6,7 +6,6 @@ import { authThunks } from "features/auth/auth.slice";
 
 export type EditableTextPropsType = {
   text: string | undefined
-  callback: () => void
 };
 export const EditableText: React.FC<EditableTextPropsType> = ( props ) => {
   const { text } = props;
@@ -21,7 +20,7 @@ export const EditableText: React.FC<EditableTextPropsType> = ( props ) => {
   const handleInputChange = ( e: ChangeEvent<HTMLInputElement> ) => {
     setValue( e.currentTarget.value );
   };
-  const disableEditMode = ( e: FocusEvent<HTMLInputElement> ) => {
+  const disableEditMode = ( e: MouseEvent<HTMLButtonElement> ) => {
     if ( value ) {
       if ( value.trim() !== "" ) {
         dispatch(authThunks.upDateUser( { name: value.trim() }))
@@ -39,13 +38,19 @@ export const EditableText: React.FC<EditableTextPropsType> = ( props ) => {
       { editMode
         ?
         <>
-          <input type="text"
+          <div className={s.inputGroup}>
+            <label className={s.label}>Nickname</label>
+          <input
+          className={s.input}
+            type="text"
                  value={ value }
                  onChange={ handleInputChange }
                  autoFocus
-                 onBlur={ disableEditMode }
           />
+         
+          <button className={  `${s.saveBtn} ${s.saveBtn1}`} onClick={disableEditMode}>SAVE</button>
           { error && <span className={s.error}>{ error }</span> }
+          </div>
         </>
         :
         <span className={s.text}
