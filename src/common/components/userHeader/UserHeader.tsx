@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
-import avatar from '../../../assets/avatarFromUserPage.png'
+import avatar from '../../../assets/user.png'
 import { useAppSelector } from "app/hooks";
 import s from './UserHeader.module.css'
 import { NavLink } from "react-router-dom";

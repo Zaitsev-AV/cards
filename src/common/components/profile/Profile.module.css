@@ -1,0 +1,98 @@
+.avatarWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.profileAvatarRoot {
+    width: 96px;
+    height: 96px;
+    border-radius: 100%;
+    background-color: black;
+}
+
+
+.AvatarImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.AvatarFallback {
+    width: 100%;
+    height: 100%;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*background-color: white;*/
+    /*color: purple;*/
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 500;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    gap: 10px;
+    padding: 0 2em 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+    transition: .4s ease-in-out;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper:hover {
+    transform: scale(1.05);
+    border: 1px solid black;
+}
+
+.heading {
+    /*display: flex;*/
+    text-align: center;
+    margin: 35px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.button3 {
+    margin-bottom: 3em;
+    padding: 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+}
+
+.button3:hover {
+    background-color: #24a139;
+    color: white;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+}
+.nameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: white;
+
+}

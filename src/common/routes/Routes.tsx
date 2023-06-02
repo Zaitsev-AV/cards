@@ -8,6 +8,7 @@ import { AuthRedirect } from "common/authRedirect/AuthRedirect";
 import { ForgotPassword } from "features/auth/forgotPassword/ForgotPassword";
 import { CheckEmail } from "features/auth/checkEmail/CheckEmail";
 import { NewPassword } from "features/auth/newPassword/NewPassword";
+import { Profile } from "common/components/profile/Profile";
 
 export const router = createBrowserRouter([
 	{
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: "/profile",
-						element: <h1>Profile</h1>,
+						element: <Profile/>,
 					},
 				]
 			},
