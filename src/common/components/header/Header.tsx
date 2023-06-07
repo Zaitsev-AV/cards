@@ -2,8 +2,8 @@ import React from 'react';
 import incubatorLogo from '../../../assets/incubator.svg'
 import s from './Header.module.css'
 import { AuthBtn } from "../buttons/AuthBtn";
-import { useAppSelector } from "app/hooks";
 import { UserHeader } from "common/components/userHeader/UserHeader";
+import { useAppSelector } from "common/hooks";
 export type HeaderPropsType = {
 
 };

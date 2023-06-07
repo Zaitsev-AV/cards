@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
 	ArgLoginType,
 	ArgRegisterType,
@@ -7,8 +7,8 @@ import {
 	ProfileType,
 	UpdateUserType
 } from "features/auth/auth.api";
-import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
 import { appActions } from "app/app.slice";
+import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
 
 const slice = createSlice( {
@@ -21,7 +21,6 @@ const slice = createSlice( {
 		builder.addCase( login.fulfilled, ( state, action ) => {
 				state.isLoggedIn = true;
 			} )
-
 			.addCase( authMe.fulfilled, ( state, action ) => {
 				// state.profile = action.payload.profile;
 				state.isLoggedIn = true;
@@ -34,14 +33,22 @@ const slice = createSlice( {
 } )
 
 const register = createAppAsyncThunk<void, ArgRegisterType>
-( 'auth/register', async ( arg ) => {
-	await authApi.register( arg )
+( "auth/register", async ( arg, thunkAPI ) => {
+	// const { dispatch, rejectWithValue } = thunkAPI;
+	// try {
+	// 	await authApi.register( arg );
+	// } catch ( e: any ) {
+	// 	const error = e.response ? e.response.data.error : e.message;
+	// 	dispatch( appActions.setError( { error } ) );
+	// 	return rejectWithValue( null );
+	//
+	// }
+	return thunkTryCatch( thunkAPI, () => authApi.register( arg ) );
 } )
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 ( 'auth/login', async ( arg, thunkAPI ) => {
-	const res = await authApi.login( arg )
-	return { profile: res.data }
+	return thunkTryCatch( thunkAPI, () => authApi.login( arg ) );
 } )
 
 const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>( "auth/authMe", async ( arg, thunkAPI ) => {
@@ -49,27 +56,33 @@ const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>( "auth/authMe
 	try {
 		const res = await authApi.me();
 		return { profile: res.data };
-	} catch ( e ) {
+	} catch ( e: any ) {
 		console.warn( e );
+		const error = e.response ? e.response.data.error : e.message;
+		dispatch( appActions.setError( { error } ) );
 		return rejectWithValue( null );
 	} finally {
 		dispatch( appActions.setInitialization( { isAppInitialized: true } ) );
 	}
 } );
-
-const upDateUser = createAppAsyncThunk<UpdateUserType, ArgUpdateUserType>( "auth/upDateUser", async ( arg ) => {
-	const res = await authApi.upDateUser( arg );
-	console.log( res.data );
-	return res.data;
-} );
+// todo доделать обработку ошибок
+const upDateUser = createAppAsyncThunk<UpdateUserType, ArgUpdateUserType>( "auth/upDateUser",
+	async ( arg, thunkAPI ) => {
+		// const res = await authApi.upDateUser( arg );
+		// console.log( res.data );
+		// return res.data;
+		return thunkTryCatch( thunkAPI, () => authApi.upDateUser( arg ) );
+	} );
 
 const logOut = createAppAsyncThunk<{ info: string }, void>( "auth/logOut", async ( arg, thunkAPI ) => {
-	const { rejectWithValue } = thunkAPI;
+	const { rejectWithValue, dispatch } = thunkAPI;
 	try {
 		const res = await authApi.logOut();
 		console.log( res.data );
 		return res.data;
-	} catch ( e ) {
+	} catch ( e: any ) {
+		const error = e.response ? e.response.data.error : e.message;
+		dispatch( appActions.setError( { error } ) );
 		return rejectWithValue( null );
 	}
 } );

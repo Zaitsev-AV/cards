@@ -3,7 +3,7 @@ import React from "react";
 import App from "app/App";
 import { Profile } from "features/profile/Profile";
 import { CheckEmail, ForgotPassword, Login, NewPassword, Register } from "features/auth";
-import { AuthRedirect } from "common/authRedirect/AuthRedirect";
+import { AuthRedirect } from "common/components/authRedirect/AuthRedirect";
 import { Auth } from "features/auth/Auth";
 
 export const router = createBrowserRouter([

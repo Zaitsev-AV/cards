@@ -1,11 +1,11 @@
 import React from "react";
 import s from "features/profile/Profile.module.css";
-import { useAppSelector } from "app/hooks";
 import * as Avatar from "@radix-ui/react-avatar";
 import avatar from "assets/user.png";
 import iconPhoto from "assets/iconPhotoChange.svg";
 import { EditableText } from "common/components/editableText/EditableText";
 import { useAuth } from "features/auth/hooks/useAuth";
+import { useAppSelector } from "common/hooks";
 
 export type ProfilePropsType = {};
 export const Profile: React.FC<ProfilePropsType> = ( props ) => {

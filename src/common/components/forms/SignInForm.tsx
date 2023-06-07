@@ -1,10 +1,11 @@
 import React from 'react';
-import { useAppDispatch } from "app/hooks";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { authThunks } from "features/auth/auth.slice";
 import s from "common/components/forms/Form.module.css";
 import { FormValues } from "common/components/forms/Form";
+import { toast } from "react-toastify";
+import { useAppDispatch } from "common/hooks";
 
 
 export const SignInForm: React.FC = (  ) => {
@@ -21,10 +22,13 @@ export const SignInForm: React.FC = (  ) => {
 		dispatch(authThunks.login(data))
 			.unwrap()
 			.then(()=> {
-				
-				navigate( "packs" );
+				toast.success('You have successfully logged in.')
+				navigate( "/" );
 			})
-			.catch(e =>     console.warn(e))
+			.catch(e => {
+				toast.error(e.message) //todo вывести ошибку
+				console.warn( e.message );
+			})
 	};
 	const signUpRedirect = () => navigate('/auth/register', { replace: true });//замена текущего адреса на новый.
 	const redirectForForgot = () => navigate('/auth/forgot', { replace: true });//замена текущего адреса на новый.

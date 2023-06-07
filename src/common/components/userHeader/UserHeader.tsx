@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
 import avatar from '../../../assets/user.png'
-import { useAppSelector } from "app/hooks";
 import s from './UserHeader.module.css'
 import { NavLink } from "react-router-dom";
 import { profile } from "features/profile/selectors";
+import { useAppSelector } from "common/hooks";
 
 export type UserHeaderPropsType = {
 

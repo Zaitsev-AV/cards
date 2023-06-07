@@ -1,10 +1,10 @@
 import React from 'react';
-import { useAppDispatch } from "app/hooks";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { authThunks } from "features/auth/auth.slice";
 import s from "common/components/forms/Form.module.css";
 import { FormValues } from "common/components/forms/Form";
+import { useAppDispatch } from "common/hooks";
 
 
 export const SignUpForm: React.FC = () => {
@@ -19,7 +19,8 @@ export const SignUpForm: React.FC = () => {
 	} = useForm<FormValues>()
 	
 	const onSubmit = (data: FormValues) => {
-		dispatch(authThunks.login(data))
+		console.log( data );
+		dispatch( authThunks.register( data ) );
 	};
 	const signInRedirect = () => navigate('/auth/login', { replace: true });//замена текущего адреса на новый.
 	

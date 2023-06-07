@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useAppSelector } from "app/hooks";
 import s from "features/auth/ui/login/Login.module.css";
 import { SignInForm } from "common/components/forms/SignInForm";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "common/hooks";
 
 export type LoginPropsType = {
 

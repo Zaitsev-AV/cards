@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import s from "common/components/forms/Form.module.css";
-import { useAppDispatch } from "app/hooks";
 import { useForm } from "react-hook-form";
 import { FormValues } from "common/components/forms/Form";
 import { authThunks } from "features/auth/auth.slice";
+import { useAppDispatch } from "common/hooks";
 
 export const CheckPasswordForm: React.FC = () => {
 	

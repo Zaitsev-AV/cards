@@ -1,8 +1,8 @@
 import React, { ChangeEvent, MouseEvent, useState } from "react";
 import s from './EditableText.module.css'
 import pencil from "assets/pencil.svg";
-import { useAppDispatch } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
+import { useAppDispatch } from "common/hooks";
 
 export type EditableTextPropsType = {
   text: string | undefined

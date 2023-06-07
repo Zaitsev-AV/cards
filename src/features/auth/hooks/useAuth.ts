@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
+import { useAppDispatch, useAppSelector } from "common/hooks";
 
 export const useAuth = () => {
   const dispatch = useAppDispatch()
