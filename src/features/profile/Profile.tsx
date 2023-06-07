@@ -10,8 +10,8 @@ import { useAuth } from "features/auth/hooks/useAuth";
 export type ProfilePropsType = {};
 export const Profile: React.FC<ProfilePropsType> = ( props ) => {
   const {} = props;
-  const userEmail = useAppSelector( state => state.auth.profile?.email );
-  const userName = useAppSelector( state => state.auth.profile?.name );
+  const userEmail = useAppSelector( state => state.profile.profile?.email );
+  const userName = useAppSelector( state => state.profile.profile?.name );
   const {onLogOut} = useAuth()
 
   

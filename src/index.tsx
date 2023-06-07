@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { RouterProvider, } from "react-router-dom";
 import { router } from "common/routes/Routes";
+import { ToastContainer } from "react-toastify";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -13,6 +14,15 @@ const root = createRoot(container);
 
 root.render(
     <Provider store={store}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <RouterProvider router={router}/>
     </Provider>
 );

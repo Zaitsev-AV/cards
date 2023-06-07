@@ -19,6 +19,12 @@ export const SignInForm: React.FC = (  ) => {
 	
 	const onSubmit = (data: FormValues) => {
 		dispatch(authThunks.login(data))
+			.unwrap()
+			.then(()=> {
+				
+				navigate( "packs" );
+			})
+			.catch(e =>     console.warn(e))
 	};
 	const signUpRedirect = () => navigate('/auth/register', { replace: true });//замена текущего адреса на новый.
 	const redirectForForgot = () => navigate('/auth/forgot', { replace: true });//замена текущего адреса на новый.
