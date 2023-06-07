@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './ForgotPassword.module.css'
+import s from 'features/auth/ui/forgotPassword/ForgotPassword.module.css'
 import { ForgotPasswordForm } from "common/components/forms/ForgotPasswordForm";
 export type ForgotPasswordPropsType = {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckEmailForm } from "common/components/forms/CheckEmailForm";
-import s from './CheckEmail.module.css'
+import s from 'features/auth/ui/checkEmail/CheckEmail.module.css'
 export type CheckEmailPropsType = {
 
 };

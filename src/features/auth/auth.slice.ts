@@ -14,20 +14,22 @@ import { appActions } from "app/app.slice";
 const slice = createSlice( {
 	name: 'auth',
 	initialState: {
-		profile: null as ProfileType | null
+		isLoggedIn: false,
 	},
 	reducers: {},
 	extraReducers: builder => {
 		builder.addCase( login.fulfilled, ( state, action ) => {
-			    console.log('login')
-				state.profile = action.payload.profile
+				state.isLoggedIn = true;
 			} )
-			.addCase(upDateUser.fulfilled, (state, action) => {
-				state.profile = action.payload.updatedUser
-			})
-			.addCase(me.fulfilled, (state, action)=> {
-				state.profile = action.payload.profile
-			})
+
+			.addCase( authMe.fulfilled, ( state, action ) => {
+				// state.profile = action.payload.profile;
+				state.isLoggedIn = true;
+			} )
+			.addCase( logOut.fulfilled, ( state, action ) => {
+				state.isLoggedIn = false;
+			} );
+		
 	}
 } )
 
@@ -42,37 +44,39 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 	return { profile: res.data }
 } )
 
-const me = createAsyncThunk<{ profile: ProfileType }, void>( 'auth/me', async ( arg, thunkAPI ) => {
-	const { dispatch, rejectWithValue } = thunkAPI
+const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>( "auth/authMe", async ( arg, thunkAPI ) => {
+	const { dispatch, rejectWithValue } = thunkAPI;
 	try {
-		const res = await authApi.me()
-		dispatch(appActions.setIsLoggedIn({isLoggedIn: true}))
-		return { profile: res.data }
+		const res = await authApi.me();
+		return { profile: res.data };
 	} catch ( e ) {
-		console.warn( e )
+		console.warn( e );
 		return rejectWithValue( null );
 	} finally {
-		dispatch(appActions.appInitialized({initialized: true}))
+		dispatch( appActions.setInitialization( { isAppInitialized: true } ) );
 	}
-	
-} )
+} );
 
-const upDateUser = createAsyncThunk<UpdateUserType, ArgUpdateUserType>( 'auth/upDateUser', async ( arg) => {
-	const res = await authApi.upDateUser(arg)
-	    console.log(res.data)
-	return res.data
-} )
+const upDateUser = createAppAsyncThunk<UpdateUserType, ArgUpdateUserType>( "auth/upDateUser", async ( arg ) => {
+	const res = await authApi.upDateUser( arg );
+	console.log( res.data );
+	return res.data;
+} );
 
-const logOut = createAsyncThunk('auth/logOut', async ()=> {
-	
-	const res = await authApi.logOut()
-	    console.log(res.data.info)
-	return res.data.info
-})
+const logOut = createAppAsyncThunk<{ info: string }, void>( "auth/logOut", async ( arg, thunkAPI ) => {
+	const { rejectWithValue } = thunkAPI;
+	try {
+		const res = await authApi.logOut();
+		console.log( res.data );
+		return res.data;
+	} catch ( e ) {
+		return rejectWithValue( null );
+	}
+} );
 
 export const authReducer = slice.reducer
 // export const authActions = slice.actions
-export const authThunks = { register, login, me, upDateUser, logOut}
+export const authThunks = { register, login, authMe: authMe, upDateUser, logOut };
 
 
 // const login = createAsyncThunk( 'auth/login', ( arg: ArgLoginType, thunkAPI ) => {

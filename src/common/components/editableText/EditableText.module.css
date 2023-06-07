@@ -43,20 +43,20 @@
 
 .label {
     display: block;
-    margin-bottom: .3rem;
+    margin-bottom: .05rem;
     font-size: .9rem;
     font-weight: bold;
-    color: #05060f99;
+    color: rgba(251, 251, 253, 0.86);
     transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
 }
 
 .input:hover, .input:focus, .inputGroup:hover .input {
     outline: none;
-    border-color: #05060f;
+    border-color: #bbbaba;
 }
 
 .inputGroup:hover .label, .input:focus {
-    color: #05060fc2;
+    color: rgba(251, 251, 253, 0.96);
 }
 
 .saveBtn1 {

@@ -8,7 +8,7 @@ export type HeaderPropsType = {
 
 };
 export const Header: React.FC<HeaderPropsType> = ( props ) => {
-	const isLoggedIn = useAppSelector<boolean>( ( state ) => state.app.isLoggedIn )
+	const isLoggedIn = useAppSelector<boolean>( ( state ) => state.auth.isLoggedIn )
 	const {} = props
 	return (
 		<header className={s.wrapper}>

@@ -5,13 +5,16 @@ import * as Avatar from "@radix-ui/react-avatar";
 import avatar from "assets/user.png";
 import iconPhoto from "assets/iconPhotoChange.svg";
 import { EditableText } from "common/components/editableText/EditableText";
+import { useAuth } from "features/auth/hooks/useAuth";
 
 export type ProfilePropsType = {};
 export const Profile: React.FC<ProfilePropsType> = ( props ) => {
   const {} = props;
-  
   const userEmail = useAppSelector( state => state.auth.profile?.email );
   const userName = useAppSelector( state => state.auth.profile?.name );
+  const {onLogOut} = useAuth()
+
+  
   return (
     <div className={ s.wrapper }>
       <p className={ s.heading }>Personal Information</p>
@@ -32,9 +35,8 @@ export const Profile: React.FC<ProfilePropsType> = ( props ) => {
         <EditableText text={ userName } />
         {/*{ userName }*/}
       </span>
-      
       <p className={ s.description }>{ userEmail }</p>
-      <button className={ s.button3 }>Log out</button>
+      <button className={ s.button3 } onClick={onLogOut}>Log out</button>
     </div>
   );
 };

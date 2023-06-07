@@ -6,7 +6,7 @@ export type AuthRedirectPropsType = {
 
 };
 export const AuthRedirect: React.FC<AuthRedirectPropsType> = ( props ) => {
-	const isLoggedIn = useAppSelector<boolean>(state => state.app.isLoggedIn)
+	const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
 	const location = useLocation()
 	    console.log('AuthRedirect called')
 	const {} = props

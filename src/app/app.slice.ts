@@ -7,26 +7,18 @@ const slice = createSlice( {
 		error: null as string | null,
 		isLoading: true,
 		isAppInitialized: false,
-		isLoggedIn: false
 	},
 	reducers: {
-		setIsLoading: (state, action: PayloadAction<{isLoading: boolean}>) => {
-			state.isLoading = action.payload.isLoading
-		},
-		appInitialized: (state, action: PayloadAction<{initialized: boolean}>) => {
-			state.isAppInitialized = action.payload.initialized
-		},
-		setIsLoggedIn: (state, action: PayloadAction<{isLoggedIn: boolean}>)=> {
-			state.isLoggedIn = action.payload.isLoggedIn
+		setInitialization: (state, action: PayloadAction<{isAppInitialized: boolean}>)=> {
+			state.isAppInitialized = action.payload.isAppInitialized
 		}
 	},
 	extraReducers: builder =>  {
-		builder.addCase(authThunks.me.fulfilled, (state, action)=> {
-			state.isLoading = true
-			state.isAppInitialized = true
+		builder.addCase(authThunks.authMe.fulfilled, ( state, action)=> {
+			state.isLoading = false
 		})
 			.addCase(authThunks.logOut.fulfilled, (state, action)=> {
-				state.isAppInitialized = false
+				state.isLoading = false
 			})
 	}
 } )

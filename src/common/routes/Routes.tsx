@@ -1,14 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Login } from "features/auth/login/Login";
-import { Register } from "features/auth/register/Register";
 import React from "react";
 import App from "app/App";
-import { Auth } from "features/auth/Auth";
-import { AuthRedirect } from "common/authRedirect/AuthRedirect";
-import { ForgotPassword } from "features/auth/forgotPassword/ForgotPassword";
-import { CheckEmail } from "features/auth/checkEmail/CheckEmail";
-import { NewPassword } from "features/auth/newPassword/NewPassword";
 import { Profile } from "features/profile/Profile";
+import { CheckEmail, ForgotPassword, Login, NewPassword, Register } from "features/auth";
+import { AuthRedirect } from "common/authRedirect/AuthRedirect";
+import { Auth } from "features/auth/Auth";
 
 export const router = createBrowserRouter([
 	{

@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import { ArgRegisterType } from "features/auth/auth.api";
-import s from './Register.module.css'
+import s from 'features/auth/ui/register/Register.module.css'
 import { Form } from "common/components/forms/Form";
 
 export type RegisterPropsType = {
