@@ -7,3 +7,5 @@ import {NewPassword} from './ui/newPassword/NewPassword'
 import {ForgotPassword} from './ui/forgotPassword/ForgotPassword'
 
 export {authReducer, authApi, Login, Register, CheckEmail, NewPassword, ForgotPassword}
+
+export {authIsRegistered, authIsLoggedIn} from './selectors'

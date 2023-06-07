@@ -15,11 +15,13 @@ const slice = createSlice( {
 	name: 'auth',
 	initialState: {
 		isLoggedIn: false,
+		isRegistered: false
 	},
 	reducers: {},
 	extraReducers: builder => {
 		builder.addCase( login.fulfilled, ( state, action ) => {
 				state.isLoggedIn = true;
+				state.isRegistered = true;
 			} )
 			.addCase( authMe.fulfilled, ( state, action ) => {
 				// state.profile = action.payload.profile;
@@ -27,6 +29,9 @@ const slice = createSlice( {
 			} )
 			.addCase( logOut.fulfilled, ( state, action ) => {
 				state.isLoggedIn = false;
+			} )
+			.addCase( register.fulfilled, ( state ) => {
+				state.isRegistered = true;
 			} );
 		
 	}

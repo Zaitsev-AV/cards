@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { authThunks } from "features/auth/auth.slice";
 import s from "common/components/forms/Form.module.css";
 import { FormValues } from "common/components/forms/Form";
-import { useAppDispatch } from "common/hooks";
+import { useRedirect } from "common/hooks";
+import { useAuth } from "features/auth/hooks/useAuth";
 
 
 export const SignUpForm: React.FC = () => {
 	
-	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	
+	const {isRegistered, onSignUp} = useAuth()
 	const {
 		register,
 		handleSubmit,
@@ -19,10 +18,12 @@ export const SignUpForm: React.FC = () => {
 	} = useForm<FormValues>()
 	
 	const onSubmit = (data: FormValues) => {
-		console.log( data );
-		dispatch( authThunks.register( data ) );
+		onSignUp(data);
 	};
+	useRedirect('/', isRegistered)
 	const signInRedirect = () => navigate('/auth/login', { replace: true });//замена текущего адреса на новый.
+	//todo придумать что-то с перенаправлением если нажал на кнопку "Sign In"
+	
 	
 	return (
 					<div className={ s.form }>
