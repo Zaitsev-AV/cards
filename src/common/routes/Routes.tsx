@@ -5,6 +5,7 @@ import { Profile } from "features/profile/Profile";
 import { CheckEmail, ForgotPassword, Login, NewPassword, Register } from "features/auth";
 import { AuthRedirect } from "common/components/authRedirect/AuthRedirect";
 import { Auth } from "features/auth/Auth";
+import { PacksList } from "features/packs/PacksList";
 
 export const router = createBrowserRouter([
 	{
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
 					{
 						index: true,// индексный маршрут, то есть когда пользователь заходит на основной маршрут будет
 						// отображаться компонент связанный с индексным маршрутом
-						element: <h1>PACKS</h1>
+						element: <PacksList/>
 					},
 					{
 						path: "/profile",
