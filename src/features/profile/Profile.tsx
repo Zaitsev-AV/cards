@@ -5,21 +5,18 @@ import avatar from "assets/user.png";
 import iconPhoto from "assets/iconPhotoChange.svg";
 import { EditableText } from "common/components/editableText/EditableText";
 import { useAuth } from "features/auth/hooks/useAuth";
-import { useAppSelector } from "common/hooks";
+import { useProfile } from "features/profile/useProfile";
 
-export type ProfilePropsType = {};
-export const Profile: React.FC<ProfilePropsType> = ( props ) => {
-  const {} = props;
-  const userEmail = useAppSelector( state => state.profile.profile?.email );
-  const userName = useAppSelector( state => state.profile.profile?.name );
-  const {onLogOut} = useAuth()
+export const Profile: React.FC = () => {
 
-  
-  return (
-    <div className={ s.wrapper }>
-      <p className={ s.heading }>Personal Information</p>
-      <div className={s.avatarWrapper}>
-        <Avatar.Root className={ s.profileAvatarRoot }>
+    const {selectProfileName,selectProfileEmail} = useProfile()
+    const { onLogOut } = useAuth();
+    
+    return (
+        <div className={ s.wrapper }>
+            <p className={ s.heading }>Personal Information</p>
+            <div className={ s.avatarWrapper }>
+                <Avatar.Root className={ s.profileAvatarRoot }>
           <Avatar.Image
             className={ s.AvatarImage }
             src={ avatar }
@@ -32,10 +29,10 @@ export const Profile: React.FC<ProfilePropsType> = ( props ) => {
         </Avatar.Root>
       </div>
       <span className={s.nameContainer}>
-        <EditableText text={ userName } />
+        <EditableText text={ selectProfileName } />
         {/*{ userName }*/}
       </span>
-      <p className={ s.description }>{ userEmail }</p>
+      <p className={ s.description }>{ selectProfileEmail }</p>
       <button className={ s.button3 } onClick={onLogOut}>Log out</button>
     </div>
   );
