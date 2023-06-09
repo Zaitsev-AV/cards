@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CardPacksResponse, CardsResponse, CreatePackType, packApi, QueryPacksParams } from "features/packs/pack.api";
+import { CardPacksResponse, CardsResponse, ArgCreatePackType, packApi, QueryPacksParams } from "features/packs/pack.api";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
 
@@ -84,7 +84,7 @@ const getPacks = createAppAsyncThunk<{ packList: CardsResponse }, void>
     } );
 } );
 
-const createPack = createAppAsyncThunk<void, CreatePackType>
+const createPack = createAppAsyncThunk<void, ArgCreatePackType>
 ( "pack/addPack", ( arg, thunkAPI ) => {
     const { dispatch, rejectWithValue } = thunkAPI;
     return thunkTryCatch(thunkAPI, async ()=> {

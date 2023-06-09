@@ -1,4 +1,5 @@
 import { Button, createStyles } from "@mantine/core";
+import { usePackList } from "features/packs/hooks/usePackList";
 
 const useStyles = createStyles( ( theme ) => ( {
     button: {
@@ -20,14 +21,17 @@ const useStyles = createStyles( ( theme ) => ( {
     }
 } ) );
 
-export const AddNewPackBtn = () => {
+export const AddPackButton = () => {
     const { classes, theme } = useStyles();
-    
+    const {addNewPack} = usePackList()
+    const onClickHandler = () => {
+        addNewPack({name: "test"})
+    };
     return (
         <Button
             fullWidth
             className={ classes.button }
-            onClick={ () => {} }
+            onClick={ onClickHandler }
         >
             <div className={ classes.label }>
                 Add new Pack

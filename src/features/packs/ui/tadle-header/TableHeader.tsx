@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { TextInput } from "@mantine/core";
+import { PackFilterButtons } from "features/packs/ui/buttons/PackFilterButtons";
+import { Slider } from "features/packs/ui/Slider";
 
 
 export const TableHeader: React.FC = () => {
@@ -10,7 +12,7 @@ export const TableHeader: React.FC = () => {
         // setSortedData(sortData(data, { sortBy, reversed: reverseSortDirection, search: value }));?
     };
     return (
-        <div style={{display: "flex"}}>
+        <div style={{display: "flex", alignItems: "center" }}>
             <TextInput
                 style={{width: "45%"}}
                 placeholder="Search by any field"
@@ -19,7 +21,8 @@ export const TableHeader: React.FC = () => {
                 value={search}
                 onChange={handleSearchChange}
             />
-        
+            <PackFilterButtons/>
+            <Slider/>
         </div>
     );
 };

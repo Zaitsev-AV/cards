@@ -5,8 +5,8 @@ export const packApi = {
     getPacks ( params?: Partial<QueryPacksParams> )  {
         return instance.get <CardsResponse, AxiosResponse>( "/cards/pack", { params } );
     },
-    createPack: ( data: CreatePackType ) => {
-        return instance.post<CreatePackResponseType>( "/cards/pack", { data } );
+    createPack: ( cardsPack: ArgCreatePackType ) => {
+        return instance.post<CreatePackResponseType>( "/cards/pack", { cardsPack } );
     },
     deletePack: ( id: string ) => {
         return instance.delete( `/cards/pack/id=${ id }` );
@@ -53,7 +53,7 @@ export type NewCardsPackType = {
     __v: number;
 }
 
-export type CreatePackType = {
+export type ArgCreatePackType = {
     name?: string
     deckCover?: string
     private?: boolean

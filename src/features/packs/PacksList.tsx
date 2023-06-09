@@ -5,7 +5,8 @@ import { usePackList } from "features/packs/hooks/usePackList";
 
 import { STable } from "features/packs/Table";
 import { TableHeader } from "features/packs/ui/tadle-header/TableHeader";
-import { AddNewPackBtn } from "features/packs/ui/buttons/addNewPackButton";
+import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
+import { Slider } from "features/packs/ui/Slider";
 
 export const PacksList: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -57,8 +58,7 @@ export const PacksList: React.FC = () => {
     return (
         <div>
             <h1>Packs list</h1>
-            <AddNewPackBtn />
-            
+            <AddPackButton />
             <TableHeader/>
             <STable data={data}/>
             {/*<TableSort data={ data } />*/}
