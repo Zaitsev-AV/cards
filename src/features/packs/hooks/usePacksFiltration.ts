@@ -16,21 +16,28 @@ export const usePacksFiltration = () => {
     const min = useAppSelector(selectMinParams)
     const max = useAppSelector(selectMaxParams)
     const pageCount = useAppSelector(selectPageCountParams)
-    const page = useAppSelector(selectPageParams)
-    const sortPack = useAppSelector(selectSortPacksParams)
-    const packName = useAppSelector(selectPackNameParams)
-    
+    const page = useAppSelector( selectPageParams );
+    const sortPack = useAppSelector( selectSortPacksParams );
+    const packName = useAppSelector( selectPackNameParams );
     
     
     const showMyPacks = () => {
-    dispatch(packListActions.setQueryParams({user_id: selectProfileID}))
-    //     dispatch(packListThunks.getPacks)
+        dispatch( packListActions.setQueryParams( { user_id: selectProfileID } ) );
+        //     dispatch(packListThunks.getPacks)
+    };
+    const showAllPacks = () => {
+        dispatch(packListActions.setQueryParams({user_id: ''}))
     };
     
-
-return {
-    showMyPacks
-}
-
-
+    const searchByList = (name: string) => {
+        dispatch(packListActions.setQueryParams({packName: name}))
+    };
+    
+    return {
+        showMyPacks,
+        showAllPacks,
+        searchByList
+    };
+    
+    
 }

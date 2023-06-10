@@ -1,5 +1,4 @@
 import { Button, createStyles } from "@mantine/core";
-import { usePackList } from "features/packs/hooks/usePackList";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 
 const useStyles = createStyles( ( theme ) => ( {
@@ -29,18 +28,14 @@ const useStyles = createStyles( ( theme ) => ( {
 
 export const PackFilterButtons = () => {
     const { classes, theme } = useStyles();
-    const onClickHandler = () => {
-        // addNewPack( { name: "test" } );
-    };
     
-    const {showMyPacks} = usePacksFiltration()
+    const { showMyPacks, showAllPacks } = usePacksFiltration();
     return (
         <>
             <Button
                 fullWidth
                 className={ classes.buttonMy }
-                onClick={ showMyPacks }
-            >
+                onClick={ showMyPacks }>
                 <div className={ classes.label }>
                     My
                 </div>
@@ -48,8 +43,7 @@ export const PackFilterButtons = () => {
             <Button
                 fullWidth
                 className={ classes.buttonAll }
-                onClick={ onClickHandler }
-            >
+                onClick={ showAllPacks }>
                 <div className={ classes.label }>
                     All
                 </div>
