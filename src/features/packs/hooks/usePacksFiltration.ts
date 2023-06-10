@@ -39,10 +39,15 @@ export const usePacksFiltration = () => {
         dispatch(packListActions.setQueryParams({page}))
     };
     
+    const handleSelectChange  = (pageCount: string) => {
+        dispatch(packListActions.setQueryParams({pageCount: +pageCount}))
+    };
+    
     return {
         showMyPacks,
         showAllPacks,
         searchByList,
+        handleSelectChange,
         pageCount,
         page,
         maxPages: max,

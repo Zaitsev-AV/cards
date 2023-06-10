@@ -6,6 +6,7 @@ import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
 import { usePackListStatus } from "features/packs/hooks/usePackListStatus";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 import { Paginator } from "common/components/paginator/Paginator";
+import { PaginationSelect } from "common/components/select/PaginationSelect";
 
 export const PacksList: React.FC = () => {
     
@@ -30,10 +31,14 @@ export const PacksList: React.FC = () => {
         <div>
             <h1>Packs list</h1>
             <AddPackButton />
-            <TableHeader/>
-            <STable data={data}/>
-            {/*<TableSort data={ data } />*/}
-            <Paginator/>
+            <TableHeader />
+            <STable data={ data } />
+            {/*<TableSort data={ data } />*/ }
+            <span style={{display: 'flex', }}>
+            <Paginator />
+            
+            <PaginationSelect />
+                </span>
         </div>
     );
 };
