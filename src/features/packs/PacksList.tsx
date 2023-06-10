@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import { packListThunks } from "features/packs/pack.slice";
-import { useAppDispatch } from "common/hooks";
+import React from "react";
 import { usePackList } from "features/packs/hooks/usePackList";
-
 import { STable } from "features/packs/Table";
 import { TableHeader } from "features/packs/ui/tadle-header/TableHeader";
 import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
-import { Slider } from "features/packs/ui/Slider";
 import { usePackListStatus } from "features/packs/hooks/usePackListStatus";
+import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
+import { Paginator } from "common/components/paginator/Paginator";
 
 export const PacksList: React.FC = () => {
     
     usePackListStatus()
+    const {page, pageCount} = usePacksFiltration()
     
     const { cardPacks } = usePackList();
         console.log(cardPacks)
@@ -34,6 +33,7 @@ export const PacksList: React.FC = () => {
             <TableHeader/>
             <STable data={data}/>
             {/*<TableSort data={ data } />*/}
+            <Paginator/>
         </div>
     );
 };

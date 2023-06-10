@@ -32,24 +32,6 @@ const initialState: InitialStateType = {
     
 };
 
-// export type CardPacksResponse = {
-//     _id: string;
-//     user_id: string;
-//     user_name: string;
-//     private: boolean;
-//     name: string;
-//     path: string;
-//     grade: number;
-//     shots: number;
-//     cardsCount: number;
-//     type: string;
-//     rating: number;
-//     created: string;
-//     updated: string;
-//     more_id: string;
-//     __v: number;
-// }
-
 type InitialStateType = {
     packList: {
         cardPacks: CardPacksResponse[]
@@ -77,7 +59,7 @@ const slice = createSlice( {
     extraReducers: builder => {
         builder
             .addCase( getPacks.fulfilled, ( state, action ) => {
-                state.packList.cardPacks = action.payload.packList.cardPacks;
+                state.packList = action.payload.packList
             } );
     }
 } );

@@ -3,6 +3,7 @@ import { RootState } from "app/store";
 
 export const selectPackData  = ( state: RootState) => state.packList.packList.cardPacks
 export const selectUserId  = ( state: RootState) => state.packList.packList.cardPacks[0].user_id
+export const selectPacksTotalCount  = ( state: RootState) => state.packList.packList.cardPacksTotalCount
 
 //params
 export const selectUserIdParams  = (state: RootState) => state.packList.queryParams.user_id
