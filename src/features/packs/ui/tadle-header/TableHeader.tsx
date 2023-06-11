@@ -4,6 +4,7 @@ import { PackFilterButtons } from "features/packs/ui/buttons/PackFilterButtons";
 import { Slider } from "features/packs/ui/Slider";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 import { useDebounce } from "common/hooks";
+import { ResetAllFilters } from "features/packs/ui/buttons/ResetAllFilters";
 
 
 export const TableHeader: React.FC = () => {
@@ -32,6 +33,7 @@ export const TableHeader: React.FC = () => {
             />
             <PackFilterButtons/>
             <Slider/>
+            <ResetAllFilters/>
         </div>
     );
 };

@@ -36,13 +36,24 @@ export const usePacksFiltration = () => {
     
     const searchByList = (value: string) => {
         dispatch(packListActions.setQueryParams({packName: value}))
-    };// todo разобраться с debounce
+    };
     
+    const handleSizePackChange = (value: number[]) => {
+        dispatch(packListActions.setQueryParams({min: value[0], max: value[1]}))
+    };
+    
+    const handleResetAllFilters = () => {
+        dispatch(packListActions.setQueryParams({
+            min: 0,
+            max: 0,
+            page: 0,
+            packName: "",
+            pageCount: 10,
+            sortPacks: "0updated",
+            user_id: ""
+        }))
+    };
 
-
-    // const handleSearch = (event) => {
-    //     setSearchTerm(event.target.value);
-    // };
         const handlePageChange  = (page: number) => {
         dispatch(packListActions.setQueryParams({page}))
     };
@@ -65,16 +76,17 @@ export const usePacksFiltration = () => {
         showAllPacks,
         searchByList,
         handleSelectChange,
+        handleSizePackChange,
+        handleResetAllFilters,
         pageCount,
         page,
-        maxCards: max,
-        minCards: min,
         totalCount: packsTotalCount,
         handlePageChange,
         handleMinCardsCount,
         handleMaxCardsCount,
         maxCardsCount,
-        minCardsCount
+        minCardsCount,
+        min, max
     };
     
     
