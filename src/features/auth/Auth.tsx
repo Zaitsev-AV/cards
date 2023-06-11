@@ -1,14 +1,9 @@
 import React from 'react';
 import { Outlet } from "react-router-dom";
 
-export type AuthPropsType = {
 
-};
-export const Auth: React.FC<AuthPropsType> = ( props ) => {
-	const {} = props
+export const Auth: React.FC = () => {
 	return (
-		<div>
-			<Outlet/>
-		</div>
+			<Outlet />
 	);
 };

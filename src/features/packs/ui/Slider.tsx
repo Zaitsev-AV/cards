@@ -1,7 +1,6 @@
 import { createStyles, RangeSlider, rem } from "@mantine/core";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 import { useEffect, useState } from "react";
-import { useTimeout } from "@mantine/hooks";
 
 const useStyles = createStyles( ( theme ) => ( {
     label: {
@@ -31,17 +30,12 @@ const useStyles = createStyles( ( theme ) => ( {
 
 export const Slider = () => {
     const { classes } = useStyles();
-    const { minCardsCount, maxCardsCount, handleSizePackChange, min, max } = usePacksFiltration();
+    const { minCardsCount, maxCardsCount, handleSizePackChange, } = usePacksFiltration();
     const [ values, setValues ] = useState<[ number, number ]>( [ 0, 100 ] );
     console.log( minCardsCount + " min" );
     console.log( maxCardsCount + " max" );
     useEffect( () => {
-
-            if (  maxCardsCount !== 0 ) {
                 setValues( ()=> [ minCardsCount, maxCardsCount ] );
-            }
-
-        
     }, [minCardsCount, maxCardsCount] );
     
     

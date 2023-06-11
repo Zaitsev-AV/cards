@@ -1,16 +1,17 @@
 import { useProfile } from "features/profile/useProfile";
-import { useAppDispatch, useAppSelector, useDebounce } from "common/hooks";
+import { useAppDispatch, useAppSelector } from "common/hooks";
 import {
     selectMaxCardsCount,
-    selectMaxParams, selectMinCardsCount,
+    selectMaxParams,
+    selectMinCardsCount,
     selectMinParams,
-    selectPackNameParams, selectPacksTotalCount,
+    selectPackNameParams,
+    selectPacksTotalCount,
     selectPageCountParams,
     selectPageParams,
     selectSortPacksParams
 } from "features/packs/selectors";
 import { packListActions } from "features/packs/pack.slice";
-import { useEffect } from "react";
 
 export const usePacksFiltration = () => {
 
@@ -25,7 +26,7 @@ export const usePacksFiltration = () => {
     const packsTotalCount = useAppSelector( selectPacksTotalCount );
     const minCardsCount = useAppSelector( selectMinCardsCount );
     const maxCardsCount = useAppSelector( selectMaxCardsCount );
-    
+    // 0 имя колонки 0 это от меньшего к большему
     const showMyPacks = () => {
         dispatch( packListActions.setQueryParams( { user_id: selectProfileID } ) );
         //     dispatch(packListThunks.getPacks)
@@ -40,6 +41,17 @@ export const usePacksFiltration = () => {
     
     const handleSizePackChange = (value: number[]) => {
         dispatch(packListActions.setQueryParams({min: value[0], max: value[1]}))
+    };
+    
+    const sortByNamePack = ( value: string) => {
+        dispatch(packListActions.setQueryParams({sortPacks: `${value}name`}))
+    };
+    const sortByCards = (value: string) => {
+        dispatch(packListActions.setQueryParams({sortPacks: `${value}cardsCount`}))
+    };
+    
+    const sortByDate = (value: string) => {
+        dispatch(packListActions.setQueryParams({sortPacks: `${value}created`}))
     };
     
     const handleResetAllFilters = () => {
@@ -78,6 +90,9 @@ export const usePacksFiltration = () => {
         handleSelectChange,
         handleSizePackChange,
         handleResetAllFilters,
+        sortByNamePack,
+        sortByCards,
+        sortByDate,
         pageCount,
         page,
         totalCount: packsTotalCount,

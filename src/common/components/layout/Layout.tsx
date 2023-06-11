@@ -5,9 +5,7 @@ import { Outlet } from "react-router-dom";
 import { LinerProgress } from "common/components/LinerPogress/LinerProgress";
 
 
-export type LayoutPropsType = {};
-export const Layout: React.FC<LayoutPropsType> = ( props ) => {
-	const {} = props
+export const Layout: React.FC = ( ) => {
 	return (
 		<>
 			<Header/>
