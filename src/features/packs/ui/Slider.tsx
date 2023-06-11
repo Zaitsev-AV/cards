@@ -32,16 +32,16 @@ export const Slider = () => {
     const { classes } = useStyles();
     const { minCardsCount, maxCardsCount, handleSizePackChange, } = usePacksFiltration();
     const [ values, setValues ] = useState<[ number, number ]>( [ 0, 100 ] );
-    console.log( minCardsCount + " min" );
-    console.log( maxCardsCount + " max" );
+    // console.log( minCardsCount + " min" );
+    // console.log( maxCardsCount + " max" );
     useEffect( () => {
                 setValues( ()=> [ minCardsCount, maxCardsCount ] );
     }, [minCardsCount, maxCardsCount] );
     
     
-    console.log( values );
+    // console.log( values );
 
-    return <div style={ { width: "15%" } }>
+    return <div style={ { width: "20%" } }>
         <RangeSlider labelAlwaysOn
                      defaultValue={ values }
                      classNames={ classes }

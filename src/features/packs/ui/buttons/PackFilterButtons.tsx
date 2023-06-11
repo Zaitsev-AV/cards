@@ -3,23 +3,23 @@ import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 
 const useStyles = createStyles( ( theme ) => ( {
     buttonMy: {
-        width: "5%",
+        width: "8%",
         position: "relative",
         backgroundColor: '#FFFFFF',
-        color: "#000000"
+        color: "#000000",
+        "&:hover": {
+            backgroundColor:  '#1c4ccb',
+            color: '#FFFFFF'
+        }
     },
     buttonAll: {
-        width: "5%",
+        width: "8%",
         position: "relative",
-        backgroundColor: '#366EFF'
+        backgroundColor: '#366EFF',
+        "&:hover": {
+            backgroundColor:  '#1c4ccb'
+        }
     },
-    
-    progress: {
-        ...theme.fn.cover( -1 ),
-        height: "auto",
-        zIndex: 0
-    },
-    
     label: {
         position: "relative",
         zIndex: 1

@@ -32,7 +32,7 @@ export const PaginationSelect: React.FC = () => {
     
     return (
         <>
-            <span>Snow</span>
+            
             <div style={ { width: "70px", height: "40px", margin: "15px" } }>
                 <Select
                     data={ data }
@@ -43,7 +43,7 @@ export const PaginationSelect: React.FC = () => {
                     required
                 />
             </div>
-            <span>Cards per Page</span>
+            
         </>
     );
 };

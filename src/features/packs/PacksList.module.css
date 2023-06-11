@@ -1,0 +1,7 @@
+.paginationWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 35%;
+    margin-top: 15px;
+}

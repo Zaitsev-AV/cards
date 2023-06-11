@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import s from 'features/packs/ui/table/tadle-filter-panel/TableFilterPanel.module.css'
 import { TextInput } from "@mantine/core";
 import { PackFilterButtons } from "features/packs/ui/buttons/PackFilterButtons";
 import { Slider } from "features/packs/ui/Slider";
@@ -10,11 +11,9 @@ import { ResetAllFilters } from "features/packs/ui/buttons/ResetAllFilters";
 export const TableFilterPanel: React.FC = () => {
     const [search, setSearch] = useState('');
     const {searchByList} = usePacksFiltration()
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
         setSearch(value);
-        // searchByList(search)
-        // setSortedData(sortData(data, { sortBy, reversed: reverseSortDirection, search: value }));?
     };
     
     const debouncedSearchTerm = useDebounce(search, 500);
@@ -23,15 +22,21 @@ export const TableFilterPanel: React.FC = () => {
         searchByList(search)
     }, [debouncedSearchTerm]);
     return (
-        <div style={{display: "flex", alignItems: "center" }}>
+        <div className={s.wrapper}>
+            <div style={{width: "50%", marginBottom: 0}}>
+                <div>Search</div>
             <TextInput
-                style={{width: "45%"}}
-                placeholder="Search by any field"
+                placeholder="Provide your text"
                 mb="md"
                 value={search}
                 onChange={handleSearchChange}
             />
-            <PackFilterButtons/>
+            </div>
+            <div className={s.btnWrapper}>
+                <div>Show packs cards</div>
+                <PackFilterButtons/>
+            </div>
+            
             <Slider/>
             <ResetAllFilters/>
         </div>

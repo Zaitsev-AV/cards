@@ -101,7 +101,7 @@ export const usePacksFiltration = () => {
         handleMaxCardsCount,
         maxCardsCount,
         minCardsCount,
-        min, max
+        min, max, sortPack
     };
     
     

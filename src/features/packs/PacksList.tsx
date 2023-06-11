@@ -1,12 +1,13 @@
 import React from "react";
+import s from "./PacksList.module.css"
 import { usePackList } from "features/packs/hooks/usePackList";
 import { PackTable } from "features/packs/ui/table/PackTable";
-import { TableFilterPanel } from "features/packs/ui/tadle-header/TableFilterPanel";
 import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
 import { usePackListStatus } from "features/packs/hooks/usePackListStatus";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
-import { Paginator } from "common/components/paginator/Paginator";
+import { Paginator } from "features/packs/ui/table/paginator/Paginator";
 import { PaginationSelect } from "common/components/select/PaginationSelect";
+import { TableFilterPanel } from "features/packs/ui/table/tadle-filter-panel/TableFilterPanel";
 
 export const PacksList: React.FC = () => {
     
@@ -32,11 +33,12 @@ export const PacksList: React.FC = () => {
             <TableFilterPanel />
             <PackTable data={ data } />
             {/*<TableSort data={ data } />*/ }
-            <span style={{display: 'flex', }}>
+            <div className={s.paginationWrapper}>
             <Paginator />
-            
+                <span>Snow</span>
             <PaginationSelect />
-                </span>
+                <span>Cards per Page</span>
+                </div>
         </div>
     );
 };
