@@ -1,7 +1,7 @@
 import React from "react";
 import { usePackList } from "features/packs/hooks/usePackList";
-import { STable } from "features/packs/Table";
-import { TableHeader } from "features/packs/ui/tadle-header/TableHeader";
+import { PackTable } from "features/packs/ui/table/PackTable";
+import { TableFilterPanel } from "features/packs/ui/tadle-header/TableFilterPanel";
 import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
 import { usePackListStatus } from "features/packs/hooks/usePackListStatus";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
@@ -29,8 +29,8 @@ export const PacksList: React.FC = () => {
         <div>
             <h1>Packs list</h1>
             <AddPackButton />
-            <TableHeader />
-            <STable data={ data } />
+            <TableFilterPanel />
+            <PackTable data={ data } />
             {/*<TableSort data={ data } />*/ }
             <span style={{display: 'flex', }}>
             <Paginator />

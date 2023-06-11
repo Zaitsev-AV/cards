@@ -7,7 +7,7 @@ import { useDebounce } from "common/hooks";
 import { ResetAllFilters } from "features/packs/ui/buttons/ResetAllFilters";
 
 
-export const TableHeader: React.FC = () => {
+export const TableFilterPanel: React.FC = () => {
     const [search, setSearch] = useState('');
     const {searchByList} = usePacksFiltration()
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
