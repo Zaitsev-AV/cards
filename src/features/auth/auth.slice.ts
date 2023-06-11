@@ -83,7 +83,6 @@ const logOut = createAppAsyncThunk<{ info: string }, void>( "auth/logOut", async
 	const { rejectWithValue, dispatch } = thunkAPI;
 	try {
 		const res = await authApi.logOut();
-		console.log( res.data );
 		return res.data;
 	} catch ( e: any ) {
 		const error = e.response ? e.response.data.error : e.message;

@@ -50,7 +50,6 @@ interface MantineTableProps {
     data: RowData[];
 }
 export const STable: React.FC<MantineTableProps> = ({ data }) => {
-    console.log(data + ' STable')
     return (
         <ScrollArea>
         <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} sx={{ tableLayout: 'fixed' }}>

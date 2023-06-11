@@ -1,4 +1,6 @@
 import { createStyles, RangeSlider, rem } from "@mantine/core";
+import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
+import { useEffect, useState } from "react";
 
 const useStyles = createStyles( ( theme ) => ( {
     label: {
@@ -28,10 +30,28 @@ const useStyles = createStyles( ( theme ) => ( {
 
 export const Slider = () => {
     const { classes } = useStyles();
+    const { minCardsCount, maxCardsCount } = usePacksFiltration();
+    const [values , setValues] = useState<[number, number]>([minCardsCount, maxCardsCount])
+    console.log(minCardsCount + ' min')
+    console.log(maxCardsCount + ' max')
+    useEffect(() => {
+        if (minCardsCount !== 0 && maxCardsCount !== 0) {
+            setValues([minCardsCount, maxCardsCount]);
+        }
+    }, [minCardsCount, maxCardsCount]);
+       
+       
+        console.log(values)
+    // if ( minCards && maxCards  ) {
+    //     setValues([minCards, maxCards])
+    // }
+    return <div style={ { width: "15%" } }>
+        <RangeSlider labelAlwaysOn
+                     defaultValue={values }
+                     classNames={ classes }
+                     // max={ maxCards }
+                     // min={ minCards }
+        />
     
-    return <div style={{width: "15%"}}>
-    <RangeSlider labelAlwaysOn
-                        defaultValue={ [ 20, 60 ] }
-                        classNames={ classes } />
-    </div>
+    </div>;
 };

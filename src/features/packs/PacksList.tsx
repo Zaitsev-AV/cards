@@ -14,7 +14,6 @@ export const PacksList: React.FC = () => {
     const {page, pageCount} = usePacksFiltration()
     
     const { cardPacks } = usePackList();
-        console.log(cardPacks)
     const data = cardPacks?.map( el => {
         return {
             name: el.name,
@@ -25,7 +24,6 @@ export const PacksList: React.FC = () => {
         };
     } );
     
-    console.log(data + ' PacksList')
     
     return (
         <div>

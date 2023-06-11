@@ -15,8 +15,6 @@ export const Paginator: React.FC = () => {
     const { page, pageCount, totalCount, handlePageChange } = usePacksFiltration();
     const pageLimit = pageCount ? pageCount : 10;
     const totalPageCount = Math.ceil( totalCount/pageLimit)
-    console.log(totalPageCount)
-        console.log(totalCount)
     
 
     const { active,  } = usePagination( { page, total: totalPageCount } );

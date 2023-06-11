@@ -13,5 +13,7 @@ export const selectPackNameParams  = (state: RootState) => state.packList.queryP
 export const selectPageParams  = (state: RootState) => state.packList.queryParams.page
 export const selectPageCountParams  = (state: RootState) => state.packList.queryParams.pageCount
 export const selectSortPacksParams  = (state: RootState) => state.packList.queryParams.sortPacks
+export const selectMinCardsCount  = (state: RootState) => state.packList.packList.minCardsCount
+export const selectMaxCardsCount  = (state: RootState) => state.packList.packList.maxCardsCount
 
 

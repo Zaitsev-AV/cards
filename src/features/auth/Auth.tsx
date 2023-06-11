@@ -6,7 +6,6 @@ export type AuthPropsType = {
 };
 export const Auth: React.FC<AuthPropsType> = ( props ) => {
 	const {} = props
-	    console.log('Auth called')
 	return (
 		<div>
 			<Outlet/>

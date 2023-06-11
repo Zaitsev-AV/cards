@@ -1,7 +1,8 @@
 import { useProfile } from "features/profile/useProfile";
-import { useAppDispatch, useAppSelector } from "common/hooks";
+import { useAppDispatch, useAppSelector, useDebounce } from "common/hooks";
 import {
-    selectMaxParams,
+    selectMaxCardsCount,
+    selectMaxParams, selectMinCardsCount,
     selectMinParams,
     selectPackNameParams, selectPacksTotalCount,
     selectPageCountParams,
@@ -9,6 +10,7 @@ import {
     selectSortPacksParams
 } from "features/packs/selectors";
 import { packListActions } from "features/packs/pack.slice";
+import { useEffect } from "react";
 
 export const usePacksFiltration = () => {
 
@@ -21,7 +23,8 @@ export const usePacksFiltration = () => {
     const sortPack = useAppSelector( selectSortPacksParams );
     const packName = useAppSelector( selectPackNameParams );
     const packsTotalCount = useAppSelector( selectPacksTotalCount );
-    
+    const minCardsCount = useAppSelector( selectMinCardsCount );
+    const maxCardsCount = useAppSelector( selectMaxCardsCount );
     
     const showMyPacks = () => {
         dispatch( packListActions.setQueryParams( { user_id: selectProfileID } ) );
@@ -31,16 +34,30 @@ export const usePacksFiltration = () => {
         dispatch(packListActions.setQueryParams({user_id: ''}))
     };
     
-    const searchByList = (name: string) => {
-        dispatch(packListActions.setQueryParams({packName: name}))
-    };
+    const searchByList = (value: string) => {
+        dispatch(packListActions.setQueryParams({packName: value}))
+    };// todo разобраться с debounce
     
-    const handlePageChange  = (page: number) => {
+
+
+    // const handleSearch = (event) => {
+    //     setSearchTerm(event.target.value);
+    // };
+        const handlePageChange  = (page: number) => {
         dispatch(packListActions.setQueryParams({page}))
     };
     
+    
     const handleSelectChange  = (pageCount: string) => {
         dispatch(packListActions.setQueryParams({pageCount: +pageCount}))
+    };
+    
+    const handleMaxCardsCount = (max: number) => {
+        dispatch(packListActions.setQueryParams({max}))
+    };
+    
+    const handleMinCardsCount = (max: number) => {
+        dispatch(packListActions.setQueryParams({max}))
     };
     
     return {
@@ -50,10 +67,14 @@ export const usePacksFiltration = () => {
         handleSelectChange,
         pageCount,
         page,
-        maxPages: max,
-        minPages: min,
+        maxCards: max,
+        minCards: min,
         totalCount: packsTotalCount,
-        handlePageChange
+        handlePageChange,
+        handleMinCardsCount,
+        handleMaxCardsCount,
+        maxCardsCount,
+        minCardsCount
     };
     
     
