@@ -4,11 +4,11 @@ import { authThunks } from "features/auth/auth.slice";
 import { Layout } from "common/components/layout/Layout";
 import { CustomLoader } from "common/components/customLoader/CustomLoader";
 import { useAppDispatch, useAppSelector } from "common/hooks";
-import { toast } from "react-toastify";
+import { selectorIsAppInitialized } from "app/app.selectors";
 
 function App() {
-    const isAppInitialized = useAppSelector<boolean>( ( state ) => state.app.isAppInitialized );
-    const isLoggedIn = useAppSelector<boolean>( ( state ) => state.auth.isLoggedIn );
+    const isAppInitialized = useAppSelector( selectorIsAppInitialized );
+    const isLoggedIn = useAppSelector( ( state ) => state.auth.isLoggedIn );
     
     const dispatch = useAppDispatch();
     

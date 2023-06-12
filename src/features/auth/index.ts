@@ -8,4 +8,4 @@ import {ForgotPassword} from './ui/forgotPassword/ForgotPassword'
 
 export {authReducer, authApi, Login, Register, CheckEmail, NewPassword, ForgotPassword}
 
-export {authIsRegistered, authIsLoggedIn} from './selectors'
+export {authIsRegistered, authIsLoggedIn} from 'features/auth/auth.selectors'

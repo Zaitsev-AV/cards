@@ -5,7 +5,7 @@ import {
     selectPageCountParams,
     selectPageParams,
     selectSortPacksParams, selectUserIdParams
-} from "features/packs/selectors";
+} from "features/packs/pack.selectors";
 import { useEffect } from "react";
 import { packListThunks } from "features/packs/pack.slice";
 

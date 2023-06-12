@@ -30,12 +30,12 @@ const useStyles = createStyles( ( theme ) => ( {
 
 export const Slider = () => {
     const { classes } = useStyles();
-    const { minCardsCount, maxCardsCount, handleSizePackChange, } = usePacksFiltration();
+    const { minCardsCount, maxCardsCount, handleSizePackChange } = usePacksFiltration();
     const [ values, setValues ] = useState<[ number, number ]>( [ 0, 100 ] );
     // console.log( minCardsCount + " min" );
     // console.log( maxCardsCount + " max" );
     useEffect( () => {
-                setValues( ()=> [ minCardsCount, maxCardsCount ] );
+        setValues( [ minCardsCount, maxCardsCount ] );
     }, [minCardsCount, maxCardsCount] );
     
     

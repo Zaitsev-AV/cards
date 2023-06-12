@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "common/hooks";
-import { selectPackData } from "features/packs/selectors";
+import { selectPackData } from "features/packs/pack.selectors";
 import { ArgCreatePackType } from "features/packs/pack.api";
 import { packListThunks } from "features/packs/pack.slice";
 
@@ -12,11 +12,16 @@ export const usePackList = () => {
         dispatch( packListThunks.createPack( arg ) );
     };
     
+    const deletePack = (packId: string) => {
+        dispatch(packListThunks.deletePack({packId}))
+    };
+    
     
     
     return {
         cardPacks,
-        addNewPack: addNewPackHandler
+        addNewPack: addNewPackHandler,
+        deletePack
         
     };
 }

@@ -1,1 +1,1 @@
-export {userEmail, userName, userID, profile} from "./selectors";
+export {selectProfileEmail, selectUserName, selectUserID, selectProfile} from "features/profile/profile.selectors";

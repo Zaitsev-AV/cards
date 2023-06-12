@@ -9,7 +9,7 @@ export const packApi = {
         return instance.post<CreatePackResponseType>( "/cards/pack", { cardsPack } );
     },
     deletePack: ( id: string ) => {
-        return instance.delete( `/cards/pack/id=${ id }` );
+        return instance.delete( `/cards/pack?id=${id}` );
     },
     updatePack: (data: UpdatePackRequestType) => {
         return instance.put<UpdatePackRequestType>('/cards/pack', data)

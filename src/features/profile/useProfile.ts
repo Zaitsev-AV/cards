@@ -1,15 +1,15 @@
 import { useAppSelector } from "common/hooks";
-import { profile, userEmail, userID, userName } from "features/profile/selectors";
+import { selectProfile, selectProfileEmail, selectUserID, selectUserName } from "features/profile/profile.selectors";
 
 export const useProfile = () => {
-    const selectProfileEmail = useAppSelector( userEmail );
-    const selectProfileName = useAppSelector( userName );
-    const selectProfileID = useAppSelector( userID );
-    const selectUserProfile = useAppSelector( profile );
+    const profileEmail = useAppSelector( selectProfileEmail );
+    const profileName = useAppSelector( selectUserName );
+    const profileId = useAppSelector( selectUserID );
+    const userProfile = useAppSelector( selectProfile );
     return {
-        selectProfileEmail,
-        selectProfileID,
-        selectProfileName,
-        selectUserProfile
+        profileEmail,
+        profileId,
+        profileName,
+        userProfile
     };
 };

@@ -2,4 +2,4 @@ export {
     selectPackData, selectPackNameParams, selectMinParams,
     selectPageParams, selectPageCountParams, selectSortPacksParams,
     selectMaxParams, selectUserIdParams, selectUserId, selectPacksTotalCount
-} from "./selectors";
+} from "features/packs/pack.selectors";

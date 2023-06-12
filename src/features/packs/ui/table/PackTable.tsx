@@ -13,7 +13,8 @@ export interface RowData {
     cards: number;
     update: string;
     created: string;
-    actions: string;
+    userId: string;
+    packId: string;
 }
 
 interface MantineTableProps {

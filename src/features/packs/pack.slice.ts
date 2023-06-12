@@ -79,10 +79,18 @@ const getPacks = createAppAsyncThunk<{ packList: CardsResponse }, void>
 const createPack = createAppAsyncThunk<void, ArgCreatePackType>
 ( "pack/addPack", ( arg, thunkAPI ) => {
     const { dispatch } = thunkAPI;
-    return thunkTryCatch(thunkAPI, async ()=> {
-        await packApi.createPack(arg)
-        dispatch(getPacks())
-    })
+    return thunkTryCatch( thunkAPI, async () => {
+        await packApi.createPack( arg );
+        dispatch( getPacks() );
+    } );
 } );
-export const packListThunks = { getPacks, createPack };
-export const packListActions = slice.actions
+
+const deletePack = createAppAsyncThunk<void, {packId: string}>( "pack/deletePack", ( arg, thunkAPI ) => {
+    const { dispatch } = thunkAPI;
+    return thunkTryCatch(thunkAPI, async ()=> {
+        await packApi.deletePack(arg.packId)
+        dispatch(getPacks())
+    });
+} );
+export const packListThunks = { getPacks, createPack, deletePack };
+export const packListActions = slice.actions;

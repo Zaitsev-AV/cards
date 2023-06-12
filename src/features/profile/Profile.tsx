@@ -9,7 +9,7 @@ import { useProfile } from "features/profile/useProfile";
 
 export const Profile: React.FC = () => {
 
-    const {selectProfileName,selectProfileEmail} = useProfile()
+    const {profileName,profileEmail} = useProfile()
     const { onLogOut } = useAuth();
     
     return (
@@ -29,10 +29,10 @@ export const Profile: React.FC = () => {
         </Avatar.Root>
       </div>
       <span className={s.nameContainer}>
-        <EditableText text={ selectProfileName } />
+        <EditableText text={ profileName } />
         {/*{ userName }*/}
       </span>
-      <p className={ s.description }>{ selectProfileEmail }</p>
+      <p className={ s.description }>{ profileEmail }</p>
       <button className={ s.button3 } onClick={onLogOut}>Log out</button>
     </div>
   );

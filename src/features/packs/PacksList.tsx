@@ -19,7 +19,8 @@ export const PacksList: React.FC = () => {
             cards: el.cardsCount,
             update: el.updated,
             created: el.user_name,
-            actions: ''
+            userId: el.user_id,
+            packId: el._id
         };
     } );
     
@@ -32,7 +33,6 @@ export const PacksList: React.FC = () => {
             </div>
             <TableFilterPanel />
             <PackTable data={ data } />
-            {/*<TableSort data={ data } />*/ }
             <div className={s.paginationWrapper}>
             <Paginator />
                 <span>Snow</span>

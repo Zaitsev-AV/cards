@@ -10,13 +10,12 @@ import {
     selectPageCountParams,
     selectPageParams,
     selectSortPacksParams
-} from "features/packs/selectors";
+} from "features/packs/pack.selectors";
 import { packListActions } from "features/packs/pack.slice";
-
 export const usePacksFiltration = () => {
 
     const dispatch = useAppDispatch()
-    const {selectProfileID} = useProfile()
+    const {profileId} = useProfile()
     const min = useAppSelector(selectMinParams)
     const max = useAppSelector(selectMaxParams)
     const pageCount = useAppSelector(selectPageCountParams)
@@ -28,9 +27,9 @@ export const usePacksFiltration = () => {
     const maxCardsCount = useAppSelector( selectMaxCardsCount );
     // 0 имя колонки 0 это от меньшего к большему
     const showMyPacks = () => {
-        dispatch( packListActions.setQueryParams( { user_id: selectProfileID } ) );
-        //     dispatch(packListThunks.getPacks)
+        dispatch( packListActions.setQueryParams( { user_id: profileId } ) );
     };
+    
     const showAllPacks = () => {
         dispatch(packListActions.setQueryParams({user_id: ''}))
     };
