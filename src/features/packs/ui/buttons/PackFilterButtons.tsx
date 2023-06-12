@@ -3,7 +3,8 @@ import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 
 const useStyles = createStyles( ( theme ) => ( {
     buttonMy: {
-        width: "8%",
+        display: "flex",
+        width: "50%",
         position: "relative",
         backgroundColor: '#FFFFFF',
         color: "#000000",
@@ -13,7 +14,8 @@ const useStyles = createStyles( ( theme ) => ( {
         }
     },
     buttonAll: {
-        width: "8%",
+        display: "flex",
+        width: "50%",
         position: "relative",
         backgroundColor: '#366EFF',
         "&:hover": {
@@ -31,7 +33,7 @@ export const PackFilterButtons = () => {
     
     const { showMyPacks, showAllPacks } = usePacksFiltration();
     return (
-        <>
+        <div style={{ display: "flex", justifyContent: "space-between", width: "250px"}}>
             <Button
                 fullWidth
                 className={ classes.buttonMy }
@@ -48,6 +50,6 @@ export const PackFilterButtons = () => {
                     All
                 </div>
             </Button>
-        </>
+        </div>
     );
 };

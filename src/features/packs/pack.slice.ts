@@ -78,7 +78,7 @@ const getPacks = createAppAsyncThunk<{ packList: CardsResponse }, void>
 
 const createPack = createAppAsyncThunk<void, ArgCreatePackType>
 ( "pack/addPack", ( arg, thunkAPI ) => {
-    const { dispatch, rejectWithValue } = thunkAPI;
+    const { dispatch } = thunkAPI;
     return thunkTryCatch(thunkAPI, async ()=> {
         await packApi.createPack(arg)
         dispatch(getPacks())

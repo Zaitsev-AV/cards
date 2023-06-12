@@ -24,7 +24,7 @@ export const TableFilterPanel: React.FC = () => {
     return (
         <div className={s.wrapper}>
             <div style={{width: "50%", marginBottom: 0}}>
-                <div>Search</div>
+                <div style={{marginBottom: "10px"}}>Search</div>
             <TextInput
                 placeholder="Provide your text"
                 mb="md"
@@ -33,11 +33,13 @@ export const TableFilterPanel: React.FC = () => {
             />
             </div>
             <div className={s.btnWrapper}>
-                <div>Show packs cards</div>
+                <div style={{marginBottom: "10px"}}>Show packs cards</div>
                 <PackFilterButtons/>
             </div>
-            
+            <div className={s.sliderWrapper}>
+                <div style={{marginBottom: "10px"}}>Number of cards</div>
             <Slider/>
+            </div>
             <ResetAllFilters/>
         </div>
     );

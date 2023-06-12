@@ -1,10 +1,9 @@
 import React from "react";
-import s from "./PacksList.module.css"
+import s from "./PacksList.module.css";
 import { usePackList } from "features/packs/hooks/usePackList";
 import { PackTable } from "features/packs/ui/table/PackTable";
 import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
 import { usePackListStatus } from "features/packs/hooks/usePackListStatus";
-import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 import { Paginator } from "features/packs/ui/table/paginator/Paginator";
 import { PaginationSelect } from "common/components/select/PaginationSelect";
 import { TableFilterPanel } from "features/packs/ui/table/tadle-filter-panel/TableFilterPanel";
@@ -12,7 +11,6 @@ import { TableFilterPanel } from "features/packs/ui/table/tadle-filter-panel/Tab
 export const PacksList: React.FC = () => {
     
     usePackListStatus()
-    const {page, pageCount} = usePacksFiltration()
     
     const { cardPacks } = usePackList();
     const data = cardPacks?.map( el => {
@@ -28,8 +26,10 @@ export const PacksList: React.FC = () => {
     
     return (
         <div>
-            <h1>Packs list</h1>
-            <AddPackButton />
+            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                <h1>Packs list</h1>
+                <AddPackButton />
+            </div>
             <TableFilterPanel />
             <PackTable data={ data } />
             {/*<TableSort data={ data } />*/ }

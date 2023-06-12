@@ -41,7 +41,7 @@ export const Slider = () => {
     
     // console.log( values );
 
-    return <div style={ { width: "20%" } }>
+    return <div style={ { width: "100%" } }>
         <RangeSlider labelAlwaysOn
                      defaultValue={ values }
                      classNames={ classes }

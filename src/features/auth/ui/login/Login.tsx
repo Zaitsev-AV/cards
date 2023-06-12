@@ -5,11 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { authThunks } from "features/auth/auth.slice";
 
-export type LoginPropsType = {
 
-};
-export const Login: React.FC<LoginPropsType> = ( props ) => {
-	const {} = props;
+export const Login: React.FC = ( ) => {
 	const dispatch = useAppDispatch()
 	const isLoggedIn = useAppSelector<boolean>( ( state ) => state.auth.isLoggedIn );
 	// const location = useLocation()
