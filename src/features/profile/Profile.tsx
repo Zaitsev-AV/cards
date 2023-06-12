@@ -5,7 +5,7 @@ import avatar from "assets/user.png";
 import iconPhoto from "assets/iconPhotoChange.svg";
 import { EditableText } from "common/components/editableText/EditableText";
 import { useAuth } from "features/auth/hooks/useAuth";
-import { useProfile } from "features/profile/useProfile";
+import { useProfile } from "features/profile/hooks/useProfile";
 
 export const Profile: React.FC = () => {
 

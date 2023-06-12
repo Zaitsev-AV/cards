@@ -1,4 +1,4 @@
-import { useProfile } from "features/profile/useProfile";
+import { useProfile } from "features/profile/hooks/useProfile";
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import {
     selectMaxCardsCount,

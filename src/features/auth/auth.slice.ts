@@ -9,6 +9,7 @@ import {
 } from "features/auth/auth.api";
 import { appActions } from "app/app.slice";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
+import { toast } from "react-toastify";
 
 
 const slice = createSlice( {
@@ -48,12 +49,15 @@ const register = createAppAsyncThunk<void, ArgRegisterType>
 	// 	return rejectWithValue( null );
 	//
 	// }
-	return thunkTryCatch( thunkAPI, () => authApi.register( arg ) );
+	return thunkTryCatch( thunkAPI, async () => await authApi.register( arg ) );
 } )
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 ( 'auth/login', async ( arg, thunkAPI ) => {
-	return thunkTryCatch( thunkAPI, () => authApi.login( arg ) );
+	return thunkTryCatch( thunkAPI, async () => {
+		await authApi.login( arg );
+		toast.success("Вы успешно вошли в систему")
+	} );
 } )
 
 const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>( "auth/authMe", async ( arg, thunkAPI ) => {
@@ -76,19 +80,22 @@ const upDateUser = createAppAsyncThunk<UpdateUserType, ArgUpdateUserType>( "auth
 		// const res = await authApi.upDateUser( arg );
 		// console.log( res.data );
 		// return res.data;
-		return thunkTryCatch( thunkAPI, () => authApi.upDateUser( arg ) );
+		return thunkTryCatch( thunkAPI, async () => await authApi.upDateUser( arg ) );
 	} );
 
 const logOut = createAppAsyncThunk<{ info: string }, void>( "auth/logOut", async ( arg, thunkAPI ) => {
 	const { rejectWithValue, dispatch } = thunkAPI;
-	try {
-		const res = await authApi.logOut();
-		return res.data;
-	} catch ( e: any ) {
-		const error = e.response ? e.response.data.error : e.message;
-		dispatch( appActions.setError( { error } ) );
-		return rejectWithValue( null );
-	}
+	return thunkTryCatch(thunkAPI, async ()=> {
+		await authApi.logOut();
+	})
+	// try {
+	// 	const res = await authApi.logOut();
+	// 	return res.data;
+	// } catch ( e: any ) {
+	// 	const error = e.response ? e.response.data.error : e.message;
+	// 	dispatch( appActions.setError( { error } ) );
+	// 	return rejectWithValue( null );
+	// }
 } );
 
 export const authReducer = slice.reducer

@@ -1,7 +1,7 @@
 import React from "react";
 import { createStyles } from "@mantine/core";
 import { RowData } from "features/packs/ui/table/PackTable";
-import { useProfile } from "features/profile/useProfile";
+import { useProfile } from "features/profile/hooks/useProfile";
 import { MdDeleteOutline, MdModelTraining } from "react-icons/md";
 import { TbPencilMinus } from "react-icons/tb";
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
