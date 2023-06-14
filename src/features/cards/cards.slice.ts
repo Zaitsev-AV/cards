@@ -61,7 +61,6 @@ export const slice = createSlice( {
     initialState,
     reducers: {
         setQueryParams: ( state, action: PayloadAction<QueryCardsParams> ) => {
-            debugger
             state.queryParams = { ...state.queryParams, ...action.payload };
         }
     },

@@ -11,13 +11,17 @@ export const useCards = () => {
     const navigate = useNavigate();
     
     const fetchStudyCards = ( packId: string ) => {
-        debugger
         dispatch(cardsActions.setQueryParams( { cardsPack_id: packId } ));
         navigate( "/cards" );
     };
     
+    const searchByCards = ( value: string ) => {
+        dispatch(cardsActions.setQueryParams( { cardsPack_id: queryParams.cardsPack_id,cardQuestion: value } ));
+    };
+    
     return {
         fetchStudyCards,
+        searchByCards,
         cards
     };
     

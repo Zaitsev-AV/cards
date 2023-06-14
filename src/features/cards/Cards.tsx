@@ -4,10 +4,18 @@ import { cardsThunks } from "features/cards/cards.slice";
 import { CardsTable } from "features/cards/ui/CardsTable/CardsTable";
 import { TextInput } from "@mantine/core";
 import { ActionButton } from "common/components/buttons/ActionButton";
+import { useCards } from "features/cards/hooks/useCards";
+import { useCardsStatus } from "features/cards/hooks/useCardsStatus";
+import { useSearch } from "common/hooks/useSearch";
 
 
 export const Cards: React.FC = () => {
     const dispatch = useAppDispatch();
+    const {searchByCards} = useCards()
+    
+    useCardsStatus()
+    const {search, handleSearchChange} = useSearch(searchByCards)
+
     useEffect( () => {
         dispatch( cardsThunks.getCards() );
     }, [] );
@@ -24,6 +32,8 @@ export const Cards: React.FC = () => {
                 <TextInput
                     placeholder="Provide your text"
                     mb="md"
+                    value={search}
+                    onChange={handleSearchChange}
                 />
             </div>
             <CardsTable />
