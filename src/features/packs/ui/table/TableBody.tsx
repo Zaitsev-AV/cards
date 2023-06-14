@@ -5,6 +5,7 @@ import { useProfile } from "features/profile/hooks/useProfile";
 import { MdDeleteOutline, MdModelTraining } from "react-icons/md";
 import { TbPencilMinus } from "react-icons/tb";
 import { usePackList } from "features/packs/hooks/usePackList";
+import { useCards } from "features/cards/hooks/useCards";
 
 
 const useStyles = createStyles( (  ) => ( {
@@ -23,23 +24,31 @@ type TableBodyPropsType = {
 export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
     const { classes } = useStyles();
     const {profileId} = useProfile()
-    const {deletePack} = usePackList()
+    const { deletePack } = usePackList();
+    const { fetchStudyCards } = useCards();
     if ( data.length === 0 ) {
         return (
-            <tbody >
+            <tbody>
             <tr>
-                <td colSpan={5}  style={{textAlign: "center", fontWeight: 700, fontSize: "22px", backgroundColor: "#efd0d0", padding: "25px"}}>
+                <td colSpan={ 5 }
+                    style={ {
+                        textAlign: "center",
+                        fontWeight: 700,
+                        fontSize: "22px",
+                        backgroundColor: "#efd0d0",
+                        padding: "25px"
+                    } }>
                     Колоды с введенным название не найдены. Измените параметры запроса
                 </td>
             </tr>
             </tbody>
         );
-    }
+    }// todo за фиксить появление этой части таблицы при первой отрисовки компонента
     return (
         <tbody className={ classes.tbody }>
         { data.map( ( row ) => (
             <tr key={ row.packId }>
-                <td style={ { fontSize: "16px" } }>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
+                <td style={ { fontSize: "16px" } } onClick={()=> fetchStudyCards(row.packId)}>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
                     25 ) + "..." }</td>
                 <td style={ { fontSize: "16px" } }>{ row.cards }</td>
                 <td>{ row.update }</td>

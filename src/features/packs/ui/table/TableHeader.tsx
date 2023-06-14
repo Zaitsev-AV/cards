@@ -1,9 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { createStyles, UnstyledButton } from "@mantine/core";
-import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
-import { BsSortAlphaDown, BsSortAlphaUp, BsSortNumericDownAlt, BsSortNumericUp } from "react-icons/bs";
-import { BiSortAlt2 } from "react-icons/bi";
-import { FaSort, FaSortDown, FaSortUp } from "react-icons/fa";
 
 const useStyles = createStyles( ( theme ) => ( {
     

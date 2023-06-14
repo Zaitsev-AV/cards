@@ -51,7 +51,7 @@ export const PackTable: React.FC<MantineTableProps> = ( { data } ) => {
     const onSortName = () => {
         setSortName( !sortName );
         if ( sortName ) {
-            sortByNamePack( "0" );
+            sortByNamePack( "0" );// todo убрать магические числа
         } else {
             sortByNamePack( "1" );
         }

@@ -6,6 +6,7 @@ import { CheckEmail, ForgotPassword, Login, NewPassword, Register } from "featur
 import { AuthRedirect } from "common/components/authRedirect/AuthRedirect";
 import { Auth } from "features/auth/Auth";
 import { PacksList } from "features/packs/PacksList";
+import { Cards } from "features/cards/Cards";
 
 export const router = createBrowserRouter([
 	{
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
 						path: "/profile",
 						element: <Profile/>,
 					},
+					{
+						path:'/cards',
+						element: <Cards/>
+					}
 				]
 			},
 			{
