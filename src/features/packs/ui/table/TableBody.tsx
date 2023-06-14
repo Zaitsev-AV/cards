@@ -13,7 +13,8 @@ const useStyles = createStyles( (  ) => ( {
         backgroundColor: "#f3f0f0",
     },
     td: {
-        fontSize: 25
+        whiteSpace: "pre-wrap",
+        wordWrap: "break-word",
     }
 } ) );
 
@@ -48,12 +49,12 @@ export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
         <tbody className={ classes.tbody }>
         { data.map( ( row ) => (
             <tr key={ row.packId }>
-                <td style={ { fontSize: "16px" } } onClick={()=> fetchStudyCards(row.packId)}>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
+                <td className={classes.td} style={ { fontSize: "16px" , cursor: "pointer"} } onClick={()=> fetchStudyCards(row.packId)}>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
                     25 ) + "..." }</td>
-                <td style={ { fontSize: "16px" } }>{ row.cards }</td>
-                <td>{ row.update }</td>
-                <td>{ row.created }</td>
-                <td>{ row.userId === profileId
+                <td className={classes.td} style={ { fontSize: "16px" } }>{ row.cards }</td>
+                <td className={classes.td}>{ row.update }</td>
+                <td className={classes.td}>{ row.created }</td>
+                <td className={classes.td}>{ row.userId === profileId
                     ?
                     <><MdDeleteOutline
                         size={20}

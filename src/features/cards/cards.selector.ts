@@ -2,6 +2,7 @@ import { RootState } from "app/store";
 
 export const selectQueryParams = (state: RootState) => state.cards.queryParams
 export const selectCards = (state: RootState) => state.cards.pack.cards
+export const selectPackUserId = (state: RootState) => state.cards.pack.packUserId
 
 
 //params
