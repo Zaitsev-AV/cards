@@ -15,6 +15,7 @@ export interface RowData {
     created: string;
     userId: string;
     packId: string;
+    count: number
 }
 
 interface MantineTableProps {

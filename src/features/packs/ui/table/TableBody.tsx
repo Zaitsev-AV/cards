@@ -49,7 +49,7 @@ export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
         <tbody className={ classes.tbody }>
         { data.map( ( row ) => (
             <tr key={ row.packId }>
-                <td className={classes.td} style={ { fontSize: "16px" , cursor: "pointer"} } onClick={()=> fetchStudyCards(row.packId)}>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
+                <td className={classes.td} style={ { fontSize: "16px" , cursor: "pointer"} } onClick={()=> fetchStudyCards(row.packId, row.count)}>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
                     25 ) + "..." }</td>
                 <td className={classes.td} style={ { fontSize: "16px" } }>{ row.cards }</td>
                 <td className={classes.td}>{ row.update }</td>

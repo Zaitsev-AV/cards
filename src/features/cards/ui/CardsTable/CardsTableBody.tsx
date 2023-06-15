@@ -3,6 +3,9 @@ import { createStyles } from "@mantine/core";
 import { CardsTableBodyData } from "features/cards/ui/CardsTable/CardsTable";
 import { useCards } from "features/cards/hooks/useCards";
 import { useProfile } from "features/profile/hooks/useProfile";
+import { StarRating } from "features/cards/ui/garde/StarRating";
+import { MdDeleteOutline } from "react-icons/md";
+import { TbPencilMinus } from "react-icons/tb";
 
 
 const useStyles = createStyles( (  ) => ( {
@@ -31,8 +34,15 @@ export const CardsTableBody: React.FC<TableBodyPropsType> = ({data}) => {
                 <td className={classes.td} style={ { fontSize: "16px" } }>{ row.question }</td>
                 <td className={classes.td} style={ { fontSize: "16px" } }>{ row.answer }</td>
                 <td className={classes.td}>{ row.update }</td>
-                <td className={classes.td}>{ row.grade }</td>
-                {packUserId === profileId && <td>{ row.grade }</td>}
+                <td className={classes.td}>{ <StarRating value={row.grade}/> }</td>
+                {packUserId === profileId && <td>
+                      <MdDeleteOutline
+                            size={20}
+                            cursor={"pointer"} onClick={()=>{}} />
+                      <TbPencilMinus
+                            size={20}
+                            cursor={"pointer"}/>
+                    </td>}
             </tr>
         ) ) }
         </tbody>

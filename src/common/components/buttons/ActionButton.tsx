@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, createStyles } from "@mantine/core";
+import { MantineSize } from "@mantine/styles/lib/theme/types/MantineSize";
 
-const useStyles = createStyles( ( theme ) => ( {
+const useStyles = createStyles( (  ) => ( {
     button: {
         background: "#366EFF",
         position: "relative",
@@ -20,20 +21,24 @@ const useStyles = createStyles( ( theme ) => ( {
 type ActionButtonPropsType = {
     callback: () => void
     text: string
+    color?: string
+    size?: MantineSize
 }
 
 export const ActionButton: React.FC<ActionButtonPropsType> = ( props ) => {
-    const { callback, text } = props;
-    const { classes, theme } = useStyles();
+    const { callback, text, color, size } = props;
+    const { classes } = useStyles();
     
     return (
         <div>
             <Button
+                style={{backgroundColor: color}}
                 fullWidth
                 className={ classes.button }
                 onClick={ callback }
+                size={size ? size : '' }
             >
-                <div className={ classes.label }>
+                <div className={ classes.label } style={{color: color ? "black" : "white"}}>
                     { text }
                 </div>
             </Button>

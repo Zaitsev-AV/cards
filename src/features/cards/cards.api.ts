@@ -1,5 +1,4 @@
 import { instance } from "common/api";
-import { AxiosResponse } from "axios";
 
 export const cardsApi = {
     getCards: (params: QueryCardsParams)=>{

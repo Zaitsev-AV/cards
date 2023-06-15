@@ -25,9 +25,7 @@ const useStyles = createStyles( ( theme ) => ( {
     }
 } ) );
 
-export type CardsTableHeaderPropsType = {};
-export const CardsTableHeader: React.FC<CardsTableHeaderPropsType> = ( props ) => {
-    const {} = props;
+export const CardsTableHeader: React.FC = () => {
     const { classes } = useStyles();
     const { packUserId } = useCards();
     const { profileId } = useProfile();

@@ -23,9 +23,9 @@ const initialState: InitialStateType = {
         cardsPack_id: '',
         min: 0,
         max: 0,
-        sortCards: '',
-        page: 0,
-        pageCount: 0
+        sortCards: '0grade',
+        page: 1,
+        pageCount: 10
     }
 };
 

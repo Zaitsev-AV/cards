@@ -3,6 +3,7 @@ import { selectCards, selectQueryParams } from "features/cards/index";
 import { cardsActions } from "features/cards/cards.slice";
 import { useNavigate } from "react-router-dom";
 import { selectPackUserId } from "features/cards/cards.selector";
+import { useCallback } from "react";
 //todo проверить пути импортов
 export const useCards = () => {
     const dispatch = useAppDispatch();
@@ -12,14 +13,15 @@ export const useCards = () => {
     
     const navigate = useNavigate();
     
-    const fetchStudyCards = ( packId: string ) => {
-        dispatch(cardsActions.setQueryParams( { cardsPack_id: packId } ));
+    const fetchStudyCards = useCallback(( packId: string, count: number ) => {
+        dispatch(cardsActions.setQueryParams( { cardsPack_id: packId, pageCount: count} ));
         navigate( "/cards" );
-    };
+    }, []);
     
     const searchByCards = ( value: string ) => {
         dispatch(cardsActions.setQueryParams( { cardsPack_id: queryParams.cardsPack_id,cardQuestion: value } ));
     };
+    
     
     return {
         fetchStudyCards,
