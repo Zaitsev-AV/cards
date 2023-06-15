@@ -19,6 +19,7 @@ export const PacksList: React.FC = () => {
     const { addNewPack } = usePackList();
     
     const { cardPacks } = usePackList();
+        console.log(cardPacks)
     const data = cardPacks?.map( el => {
         return {
             name: el.name,
@@ -27,7 +28,8 @@ export const PacksList: React.FC = () => {
             created: el.user_name,
             userId: el.user_id,
             packId: el._id,
-            count: el.cardsCount
+            count: el.cardsCount,
+            private: el.private
         };
     } );
     const addNewPackHandler = ( value: string, checked: boolean ) => {

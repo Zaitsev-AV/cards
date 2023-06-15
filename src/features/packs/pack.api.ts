@@ -11,8 +11,8 @@ export const packApi = {
     deletePack: ( id: string ) => {
         return instance.delete( `/cards/pack?id=${id}` );
     },
-    updatePack: (data: UpdatePackRequestType) => {
-        return instance.put<UpdatePackRequestType>('/cards/pack', data)
+    updatePack: (data: UpdatePackType) => {
+        return instance.put<{updatedCardsPack: CardPacksResponse}>('/cards/pack', { cardsPack: data })
     }
     
 };
@@ -21,7 +21,7 @@ export const packApi = {
 export type UpdatePackType = {
     _id: string
     name?: string
-    deckCover?: string
+    private?: boolean
 }
 
 export type UpdatePackRequestType = {

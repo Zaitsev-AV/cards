@@ -6,6 +6,9 @@ import { MdDeleteOutline, MdModelTraining } from "react-icons/md";
 import { TbPencilMinus } from "react-icons/tb";
 import { usePackList } from "features/packs/hooks/usePackList";
 import { useCards } from "features/cards/hooks/useCards";
+import { Modals } from "common/components/Modals/Modals";
+import { useDisclosure } from "@mantine/hooks";
+import { toast } from "react-toastify";
 
 
 const useStyles = createStyles( (  ) => ( {
@@ -23,10 +26,19 @@ type TableBodyPropsType = {
 }
 
 export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
+    const [ opened, { open, close } ] = useDisclosure( false );
     const { classes } = useStyles();
     const {profileId} = useProfile()
     const { deletePack } = usePackList();
     const { fetchStudyCards } = useCards();
+    const { editPack} = usePackList()
+    const editPackHandler = ( id: string, value: string, checked: boolean ) => {
+            console.log(id)
+        editPack( { _id: id, name: value, private: checked } );
+        toast.success("Package updated successfully 🥳")
+    };
+    
+    
     if ( data.length === 0 ) {
         return (
             <tbody>
@@ -64,9 +76,19 @@ export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
                             cursor={"pointer"}/>
                         <TbPencilMinus
                             size={20}
-                            cursor={"pointer"}/></>
+                            cursor={"pointer"}
+                        onClick={open}
+                        /></>
                     : ( row.cards !== 0 && <MdModelTraining size={20} cursor={"pointer"}/>) }</td>
+                <Modals
+                    title={"Edit pack"}
+                    packName={row.name}
+                    status={row.private}
+                    close={ close }
+                    opened={ opened }
+                    callback={ ( name, checked ) => editPackHandler( row.packId, name, checked ) } />
             </tr>
+            
         ) ) }
         </tbody>
     );

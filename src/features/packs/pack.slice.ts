@@ -4,7 +4,7 @@ import {
     CardsResponse,
     ArgCreatePackType,
     packApi,
-    QueryPacksParams
+    QueryPacksParams, UpdatePackRequestType, UpdatePackType
 } from "features/packs/pack.api";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
@@ -85,6 +85,15 @@ const createPack = createAppAsyncThunk<void, ArgCreatePackType>
     } );
 } );
 
+const updatePack = createAppAsyncThunk<void, UpdatePackType>
+( "pack/updatePack", ( arg, thunkAPI ) => {
+    const { dispatch } = thunkAPI;
+    return thunkTryCatch( thunkAPI, async () => {
+        await packApi.updatePack( arg );
+        dispatch( getPacks() );
+    } );
+} );
+
 const deletePack = createAppAsyncThunk<void, {packId: string}>( "pack/deletePack", ( arg, thunkAPI ) => {
     const { dispatch } = thunkAPI;
     return thunkTryCatch(thunkAPI, async ()=> {
@@ -92,5 +101,5 @@ const deletePack = createAppAsyncThunk<void, {packId: string}>( "pack/deletePack
         dispatch(getPacks())
     });
 } );
-export const packListThunks = { getPacks, createPack, deletePack };
+export const packListThunks = { getPacks, createPack, deletePack, updatePack };
 export const packListActions = slice.actions;

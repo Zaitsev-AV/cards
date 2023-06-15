@@ -8,11 +8,13 @@ type ModalsPropsType = {
     close: () => void
     title: string
     callback: (name: string, checked: boolean)=> void
+    packName?: string
+    status?: boolean
 }
-export const Modals: React.FC<ModalsPropsType> = ( { opened, close, title, callback } ) => {
+export const Modals: React.FC<ModalsPropsType> = ( { opened, close, title, callback, packName, status } ) => {
     const theme = useMantineTheme();
-    const [ value, setValue ] = useState( "" );
-    const [checked, setChecked] = useState(false);
+    const [ value, setValue ] = useState( packName ? packName :"" );
+    const [checked, setChecked] = useState(status ? status : false);
     const onChangeInputHandler = ( event: ChangeEvent<HTMLInputElement> ) => {
         const { value } = event.currentTarget;
         setValue( value );
