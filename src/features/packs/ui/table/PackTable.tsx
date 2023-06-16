@@ -4,7 +4,7 @@ import { BsSortAlphaDown, BsSortAlphaUp, BsSortNumericDownAlt, BsSortNumericUp }
 import { usePacksFiltration } from "features/packs/hooks/usePacksFiltration";
 import { BiSortAlt2 } from "react-icons/bi";
 import { FaSort, FaSortDown, FaSortUp } from "react-icons/fa";
-import { TableBody } from "features/packs/ui/table/TableBody";
+import { TableBody } from "features/packs/ui/table/table-body/TableBody";
 import { TableHeader } from "features/packs/ui/table/TableHeader";
 
 

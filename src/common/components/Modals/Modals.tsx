@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { Checkbox, Input, Modal, useMantineTheme } from "@mantine/core";
 import { ActionButton } from "common/components/buttons/ActionButton";
-import { usePackList } from "features/packs/hooks/usePackList";
 
 type ModalsPropsType = {
     opened: boolean

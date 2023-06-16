@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdDeleteOutline, MdModelTraining } from "react-icons/md";
 import { TbPencilMinus } from "react-icons/tb";
 import { toast } from "react-toastify";
@@ -8,6 +8,9 @@ import { usePackList } from "features/packs/hooks/usePackList";
 import { createStyles } from "@mantine/core";
 import { Modals } from "common/components/Modals/Modals";
 import { useDisclosure } from "@mantine/hooks";
+import { PackActions } from "features/packs/ui/table/table-body/row/PackActions";
+import { PackInfo } from "features/packs/ui/table/table-body/row/PackInfo";
+import { DeleteModal } from "common/components/Modals/DeleteModal";
 
 type TableBodyRowPropsType = {
     name: string;
@@ -30,13 +33,18 @@ export const TableBodyRow: React.FC<TableBodyRowPropsType> = ( props ) => {
     const { name, created, update, count, userId, packId, status, cards } = props;
     const { classes } = useStyles();
     const [ opened, { open, close } ] = useDisclosure( false );
+    const [ openedDelete, setOpened ] = useState( false );
     const { profileId } = useProfile();
-    const { fetchStudyCards } = useCards();
-    const { editPack, deletePack } = usePackList();
+    const { editPack } = usePackList();
     const editPackHandler = ( id: string, value: string, checked: boolean ) => {
         console.log( id );
         editPack( { _id: id, name: value, private: checked } );
         toast.success( "Package updated successfully 🥳" );
+    };
+    const { deletePack } = usePackList();
+    
+    const handleDeletePack = () => {
+        deletePack(packId);
     };
     return (
         <>
@@ -48,32 +56,19 @@ export const TableBodyRow: React.FC<TableBodyRowPropsType> = ( props ) => {
                 opened={ opened }
                 callback={ ( name, checked ) => editPackHandler( packId, name, checked ) }
             />
+            <DeleteModal opened={openedDelete} close={setOpened} title={'Delete Pack'} callback={handleDeletePack}/>
             
             <tr key={ packId }>
-                <td className={ classes.td }
-                    style={ { fontSize: "16px", cursor: "pointer" } }
-                    onClick={ () => fetchStudyCards( packId,
-                        count ) }>{ name.trim().length < 20 ? name : name.trim().slice( 0,
-                    25 ) + "..." }</td>
+                <PackInfo name={name} packId={packId} count={count}/>
                 <td className={ classes.td }
                     style={ { fontSize: "16px" } }>{ cards }</td>
                 <td className={ classes.td }>{ update }</td>
                 <td className={ classes.td }>{ created }</td>
-                <td className={ classes.td }>{ userId === profileId
-                    ?
-                    <><MdDeleteOutline
-                        size={ 20 }
-                        cursor={ "pointer" }
-                        onClick={ () => deletePack( packId ) } />
-                        <MdModelTraining
-                            size={ 20 }
-                            cursor={ "pointer" } />
-                        <TbPencilMinus
-                            size={ 20 }
-                            cursor={ "pointer" }
-                            onClick={ open }
-                        /></>
-                    : ( cards !== 0 && <MdModelTraining size={ 20 }
+                <td className={ classes.td }>
+                    {userId === profileId ? (
+                            <PackActions packId={packId} open={()=>setOpened(true)} />
+                        )
+                        : ( cards !== 0 && <MdModelTraining size={ 20 }
                                                         cursor={ "pointer" } /> ) }</td>
             </tr>
         </>

@@ -1,15 +1,7 @@
 import React from "react";
 import { createStyles } from "@mantine/core";
 import { RowData } from "features/packs/ui/table/PackTable";
-import { useProfile } from "features/profile/hooks/useProfile";
-import { MdDeleteOutline, MdModelTraining } from "react-icons/md";
-import { TbPencilMinus } from "react-icons/tb";
-import { usePackList } from "features/packs/hooks/usePackList";
-import { useCards } from "features/cards/hooks/useCards";
-import { Modals } from "common/components/Modals/Modals";
-import { useDisclosure } from "@mantine/hooks";
-import { toast } from "react-toastify";
-import { TableBodyRow } from "features/packs/ui/table/tadle-filter-panel/TableBodyRow";
+import { TableBodyRow } from "features/packs/ui/table/table-body/row/TableBodyRow";
 
 
 const useStyles = createStyles( (  ) => ( {
@@ -28,9 +20,6 @@ type TableBodyPropsType = {
 
 export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
     const { classes } = useStyles();
-    const { profileId } = useProfile();
-    const { fetchStudyCards } = useCards();
-    const { editPack, deletePack } = usePackList();
     
     // сделать переход на страницу с id в url и оттуда брать packId
     if ( data.length === 0 ) {
