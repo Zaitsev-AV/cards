@@ -15,8 +15,8 @@ export interface RowData {
     created: string;
     userId: string;
     packId: string;
-    count: number
-    private: boolean
+    count: number;
+    private: boolean;
 }
 
 interface MantineTableProps {

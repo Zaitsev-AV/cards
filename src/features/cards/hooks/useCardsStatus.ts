@@ -18,6 +18,6 @@ export const useCardsStatus = () => {
     
     
     useEffect(()=> {
-        dispatch(cardsThunks.getCards())
+        dispatch(cardsThunks.getCards( { id:cardsPackId }))
     }, [cardAnswer, sortCards, cardQuestion, cardsPackId])
 }

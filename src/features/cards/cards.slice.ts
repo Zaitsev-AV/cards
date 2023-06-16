@@ -71,11 +71,11 @@ export const slice = createSlice( {
     }
 } );
 
-const getCards = createAppAsyncThunk<CardsResponseType, void>( "cards/getCards", ( arg, thunkAPI ) => {
+const getCards = createAppAsyncThunk<CardsResponseType, { id: string }>( "cards/getCards", ( arg, thunkAPI ) => {
     const { getState } = thunkAPI;
     const params = getState().cards.queryParams;
     return thunkTryCatch( thunkAPI, async () => {
-        const res = await cardsApi.getCards( { ...params } ).then(res => res.data);
+        const res = await cardsApi.getCards( { ...params,cardsPack_id: arg.id } ).then(res => res.data);
             console.log(res)
         return  res ;
     } );

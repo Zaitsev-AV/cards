@@ -9,6 +9,7 @@ import { useCards } from "features/cards/hooks/useCards";
 import { Modals } from "common/components/Modals/Modals";
 import { useDisclosure } from "@mantine/hooks";
 import { toast } from "react-toastify";
+import { TableBodyRow } from "features/packs/ui/table/tadle-filter-panel/TableBodyRow";
 
 
 const useStyles = createStyles( (  ) => ( {
@@ -26,19 +27,12 @@ type TableBodyPropsType = {
 }
 
 export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
-    const [ opened, { open, close } ] = useDisclosure( false );
     const { classes } = useStyles();
-    const {profileId} = useProfile()
-    const { deletePack } = usePackList();
+    const { profileId } = useProfile();
     const { fetchStudyCards } = useCards();
-    const { editPack} = usePackList()
-    const editPackHandler = ( id: string, value: string, checked: boolean ) => {
-            console.log(id)
-        editPack( { _id: id, name: value, private: checked } );
-        toast.success("Package updated successfully 🥳")
-    };
+    const { editPack, deletePack } = usePackList();
     
-    
+    // сделать переход на страницу с id в url и оттуда брать packId
     if ( data.length === 0 ) {
         return (
             <tbody>
@@ -59,37 +53,17 @@ export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
     }// todo за фиксить появление этой части таблицы при первой отрисовки компонента
     return (
         <tbody className={ classes.tbody }>
-        { data.map( ( row ) => (
-            <tr key={ row.packId }>
-                <td className={classes.td} style={ { fontSize: "16px" , cursor: "pointer"} } onClick={()=> fetchStudyCards(row.packId, row.count)}>{ row.name.trim().length < 20 ? row.name : row.name.trim().slice( 0,
-                    25 ) + "..." }</td>
-                <td className={classes.td} style={ { fontSize: "16px" } }>{ row.cards }</td>
-                <td className={classes.td}>{ row.update }</td>
-                <td className={classes.td}>{ row.created }</td>
-                <td className={classes.td}>{ row.userId === profileId
-                    ?
-                    <><MdDeleteOutline
-                        size={20}
-                        cursor={"pointer"} onClick={()=>deletePack(row.packId)} />
-                        <MdModelTraining
-                            size={20}
-                            cursor={"pointer"}/>
-                        <TbPencilMinus
-                            size={20}
-                            cursor={"pointer"}
-                        onClick={open}
-                        /></>
-                    : ( row.cards !== 0 && <MdModelTraining size={20} cursor={"pointer"}/>) }</td>
-                <Modals
-                    title={"Edit pack"}
-                    packName={row.name}
-                    status={row.private}
-                    close={ close }
-                    opened={ opened }
-                    callback={ ( name, checked ) => editPackHandler( row.packId, name, checked ) } />
-            </tr>
-            
-        ) ) }
+        { data.map( ( row ) =>
+            <TableBodyRow
+                name={ row.name }
+                cards={ row.cards }
+                update={ row.update }
+                created={ row.created }
+                userId={ row.userId }
+                packId={ row.packId }
+                count={ row.count }
+                status={ row.private }
+            /> ) }
         </tbody>
     );
 };

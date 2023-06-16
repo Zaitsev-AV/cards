@@ -7,17 +7,18 @@ import { ActionButton } from "common/components/buttons/ActionButton";
 import { useCards } from "features/cards/hooks/useCards";
 import { useCardsStatus } from "features/cards/hooks/useCardsStatus";
 import { useSearch } from "common/hooks/useSearch";
+import { useParams } from "react-router-dom";
 
 
 export const Cards: React.FC = () => {
     const dispatch = useAppDispatch();
     const {searchByCards} = useCards()
-    
+    const {id} = useParams()
     useCardsStatus()
     const {search, handleSearchChange} = useSearch(searchByCards)
 
     useEffect( () => {
-        dispatch( cardsThunks.getCards() );
+        dispatch( cardsThunks.getCards( { id: id ?? '' }) );
     }, [] );
     return (
         <div>
