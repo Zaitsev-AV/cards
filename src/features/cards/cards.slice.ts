@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CardType } from "features/cards/types";
-import { cardsApi, CardsResponseType, QueryCardsParams } from "features/cards/cards.api";
+import { CardRequestType, cardsApi, CardsResponseType, QueryCardsParams } from "features/cards/cards.api";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
 const initialState: InitialStateType = {
@@ -13,7 +13,7 @@ const initialState: InitialStateType = {
         packUpdated: "",
         page: 0,
         pageCount: 0,
-        cardsTotalCount: 0,
+        cardsTotalCount: 100,
         minGrade: 0,
         maxGrade: 0
     },
@@ -65,9 +65,9 @@ export const slice = createSlice( {
         }
     },
     extraReducers:builder =>  {
-        builder.addCase(getCards.fulfilled, (state, action)=> {
-            state.pack = action.payload
-        })
+        builder.addCase( getCards.fulfilled, ( state, action ) => {
+                state.pack = action.payload;
+            } )
     }
 } );
 
@@ -75,13 +75,24 @@ const getCards = createAppAsyncThunk<CardsResponseType, { id: string }>( "cards/
     const { getState } = thunkAPI;
     const params = getState().cards.queryParams;
     return thunkTryCatch( thunkAPI, async () => {
-        const res = await cardsApi.getCards( { ...params,cardsPack_id: arg.id } ).then(res => res.data);
-            console.log(res)
-        return  res ;
+        const res = await cardsApi.getCards( { ...params, cardsPack_id: arg.id } )
+            .then( res => res.data );
+        console.log( res );
+        return res;
+    } );
+} );
+
+const createCard = createAppAsyncThunk<{ newCard: CardType }, CardRequestType>
+( "cards/createCard", ( arg, thunkAPI ) => {
+    const { dispatch, getState } = thunkAPI;
+    const id = getState().cards.queryParams.cardsPack_id;
+    return thunkTryCatch( thunkAPI, async () => {
+        await cardsApi.createCard( arg );
+        dispatch( getCards( { id } ) );
     } );
 } );
 
 
-export const cardsThunks = {getCards}
+export const cardsThunks = { getCards, createCard };
 export const cardsReducer = slice.reducer;
-export const cardsActions = slice.actions
+export const cardsActions = slice.actions;

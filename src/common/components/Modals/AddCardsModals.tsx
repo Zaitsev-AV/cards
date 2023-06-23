@@ -1,28 +1,39 @@
 import React, { ChangeEvent, useState } from "react";
-import { Checkbox, Input, Modal, useMantineTheme } from "@mantine/core";
+import { Input, Modal, Select, useMantineTheme } from "@mantine/core";
 import { ActionButton } from "common/components/buttons/ActionButton";
 
-type ModalsPropsType = {
+type AddCardsModalPropsType = {
     opened: boolean
     close: () => void
     title: string
-    callback: (name: string, checked: boolean)=> void
+    callback: ( question: string, answer: string ) => void
     packName?: string
     status?: boolean
 }
-export const AddCardsModals: React.FC<ModalsPropsType> = ( { opened, close, title, callback, packName, status } ) => {
+export const AddCardsModals: React.FC<AddCardsModalPropsType> = ( props ) => {
+    const { close,title, opened, callback, packName, status} = props
     const theme = useMantineTheme();
-    const [ value, setValue ] = useState( packName ? packName :"" );
-    const [checked, setChecked] = useState(status ? status : false);
-    const onChangeInputHandler = ( event: ChangeEvent<HTMLInputElement> ) => {
+    const [ question, setQuestion ] = useState( packName ? packName : "" );
+    const [ answer, setAnswer ] = useState( packName ? packName : "" );
+    const data = [
+        { value: "text", label: "Text" },
+        { value: "image", label: "Image" },
+        { value: "video", label: "Video" }
+    ];
+    const [ value, setValue ] = useState<string | null>( null );
+    const onChangeQuestionInputHandler = ( event: ChangeEvent<HTMLInputElement> ) => {
         const { value } = event.currentTarget;
-        setValue( value );
+        setQuestion( value );
+    };
+    const onChangeAnswerInputHandler = ( event: ChangeEvent<HTMLInputElement> ) => {
+        const { value } = event.currentTarget;
+        setAnswer( value );
     };
     const callbackHandler = () => {
-        callback(value, checked)
-        close()
-        setValue('')
-        setChecked(false)
+        callback( question, answer );
+        close();
+        setAnswer( "" );
+        setQuestion( "" );
     };
     
     return (
@@ -41,7 +52,16 @@ export const AddCardsModals: React.FC<ModalsPropsType> = ( { opened, close, titl
                 } }
             >
                 <div>
-                    <p><b>Name pack</b></p>
+                    <p>Choose a question format</p>
+                    <Select
+                        placeholder="Pick one"
+                        allowDeselect
+                        creatable
+                        data={ data }
+                        value={ data[ 0 ].label }
+                        onChange={setValue}
+                    />
+                    <p>Question</p>
                     <Input
                         styles={ ( theme ) => ( {
                             input: {
@@ -51,17 +71,26 @@ export const AddCardsModals: React.FC<ModalsPropsType> = ( { opened, close, titl
                             }
                         } ) }
                         required
-                        placeholder="Please enter a package name"
-                        value={ value }
-                        onChange={ onChangeInputHandler }
+                        placeholder="Please enter a question"
+                        value={ question }
+                        onChange={ onChangeQuestionInputHandler }
+                    />
+                    <p>Answer</p>
+                    <Input
+                        styles={ ( theme ) => ( {
+                            input: {
+                                "&:focus-within": {
+                                    borderColor: theme.colors.green[ 7 ]
+                                }
+                            }
+                        } ) }
+                        required
+                        placeholder="Please enter a answer"
+                        value={ answer }
+                        onChange={ onChangeAnswerInputHandler }
                     />
                 </div>
-                <Checkbox
-                    style={ { paddingTop: "15px", paddingBottom: "15px" } }
-                    label="Private pack"
-                    checked={checked}
-                    onChange={(event) => setChecked(event.currentTarget.checked)}
-                />
+                
                 <div style={ { display: "flex", justifyContent: "space-between", margin: "10px" } }>
                     <ActionButton callback={ close }
                                   text={ "Cancel" }

@@ -7,9 +7,9 @@ type ModalsPropsType = {
     close: (openedDelete: boolean) => void
     title: string
     callback: ()=> void
-    packName?: string
+    name?: string
 }
-export const DeleteModal: React.FC<ModalsPropsType> = ( { opened, close, title, callback, packName,  } ) => {
+export const DeleteModal: React.FC<ModalsPropsType> = ( { opened, close, title, callback, name,  } ) => {
     const theme = useMantineTheme();
     const callbackHandler = () => {
         callback()
@@ -32,8 +32,9 @@ export const DeleteModal: React.FC<ModalsPropsType> = ( { opened, close, title, 
                 } }
             >
                 <div>
-                    { `Do you really want to remove ${packName}?
-                    All cards will be deleted.` }
+                    {`Do you really want to remove `}
+                    <b>"{name}"</b>
+                    {`? All cards will be deleted.`}
                 </div>
                 <div style={ { display: "flex", justifyContent: "space-between", margin: "10px" } }>
                     <ActionButton callback={ ()=>close(false) }

@@ -15,30 +15,36 @@ import { useDisclosure } from "@mantine/hooks";
 
 export const Cards: React.FC = () => {
     const dispatch = useAppDispatch();
-    const {searchByCards} = useCards()
-    const {packId} = useParams()
-    const {packUserId} = useCards()
-    useCardsStatus()
+    const { searchByCards } = useCards();
+    const { packId } = useParams();
+    const { packUserId, createNewCard, cardsPackId } = useCards();
+    useCardsStatus();
     const { profileId } = useProfile();
     const { search, handleSearchChange } = useSearch( searchByCards );
     const [ opened, { open, close } ] = useDisclosure( false );
     
+    const addCardsModalHandler = ( question: string, answer: string ) => createNewCard(
+        { cardsPack_id: cardsPackId, question, answer } );
+    
     useEffect( () => {
-        dispatch( cardsThunks.getCards( { id: packId ?? '' }) );
+        dispatch( cardsThunks.getCards( { id: packId ?? "" } ) );
     }, [] );
-        console.log(profileId)
-        console.log(packUserId)
+    console.log( profileId );
+    console.log( packUserId );
     return (
         <div>
             <div style={ { display: "flex", justifyContent: "space-between", alignItems: "center" } }>
                 { profileId === packUserId
                     ?
                     <>
-                        <h1>Friend’s Pack</h1>
+                        <h1>My Pack</h1>
                         <ActionButton callback={ open }
                                       size={ "md" }
                                       text={ "Add new Card" } />
-                        <AddCardsModals callback={()=> {}} title={"Add new Card"} opened={opened} close={close}/>
+                        <AddCardsModals callback={ addCardsModalHandler }
+                                        title={ "Add new Card" }
+                                        opened={ opened }
+                                        close={ close } />
                     </>
                     :
                     <>
@@ -46,6 +52,7 @@ export const Cards: React.FC = () => {
                         <ActionButton callback={ () => {} }
                                       size={ "md" }
                                       text={ "Learn to pack" } />
+                        
                     </>
                 }
             </div>

@@ -6,6 +6,9 @@ import { useProfile } from "features/profile/hooks/useProfile";
 import { StarRating } from "features/cards/ui/garde/StarRating";
 import { MdDeleteOutline } from "react-icons/md";
 import { TbPencilMinus } from "react-icons/tb";
+import { AddCardsModals } from "common/components/Modals/AddCardsModals";
+import { useDisclosure } from "@mantine/hooks";
+import { CardActions } from "features/cards/ui/CardsTable/CardActions";
 
 
 const useStyles = createStyles( (  ) => ( {
@@ -26,7 +29,7 @@ export const CardsTableBody: React.FC<TableBodyPropsType> = ({data}) => {
     const { classes } = useStyles();
     const { packUserId } = useCards();
     const { profileId } = useProfile();
- 
+
     return (
         <tbody className={ classes.tbody }>
         { data.map( ( row ) => (
@@ -35,14 +38,7 @@ export const CardsTableBody: React.FC<TableBodyPropsType> = ({data}) => {
                 <td className={classes.td} style={ { fontSize: "16px" } }>{ row.answer }</td>
                 <td className={classes.td}>{ row.update }</td>
                 <td className={classes.td}>{ <StarRating value={row.grade}/> }</td>
-                {packUserId === profileId && <td>
-                      <MdDeleteOutline
-                            size={20}
-                            cursor={"pointer"} onClick={()=>{}} />
-                      <TbPencilMinus
-                            size={20}
-                            cursor={"pointer"}/>
-                    </td>}
+                {packUserId === profileId && <CardActions cardName={row.question}/>}
             </tr>
         ) ) }
         </tbody>

@@ -1,11 +1,17 @@
 import { instance } from "common/api";
 
 export const cardsApi = {
-    getCards: (params: QueryCardsParams)=>{
+    getCards: ( params: QueryCardsParams ) => {
         return instance.get<CardsResponseType>( "/cards/card", { params } );
     },
-    createCard: (arg: CardRequestType)=> {
-    return instance.post<{newCard: CardType}>("/cords/card", {card: arg})
+    createCard: ( arg: CardRequestType ) => {
+        return instance.post<{ newCard: CardType }>( "/cards/card", { card: arg } );
+    },
+    updateCard: ( arg: UpdateCardType ) => {
+        return instance.put<{ updatedCard: CardType }>( "/cards/card", { card: arg } );
+    },
+    deleteCard: (id: string)=> {
+        return instance.delete(`/cards/card?id=${id}`)
     }
 }
 
@@ -61,13 +67,25 @@ export type QueryCardsParams = {
 }
 
 export type CardRequestType = {
-	cardsPack_id: string;
-	question: string;
-	answer: string;
-	grade?: number;
-	shots?: number;
-	answerImg?: string;
-	questionImg?: string;
-	questionVideo?: string;
-	answerVideo?: string;
+    cardsPack_id: string;
+    question: string;
+    answer: string;
+    grade?: number;
+    shots?: number;
+    answerImg?: string;
+    questionImg?: string;
+    questionVideo?: string;
+    answerVideo?: string;
+}
+
+export type UpdateCardType = {
+    answer?: string
+    grade?: number
+    shots?: number
+    answerImg?: string
+    questionImg?: string
+    questionVideo?: string
+    answerVideo?: string
+    _id: string
+    question?: string
 }
