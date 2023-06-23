@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { useProfile } from "features/profile/hooks/useProfile";
 import { AddCardsModals } from "common/components/Modals/AddCardsModals";
 import { useDisclosure } from "@mantine/hooks";
+import { BackButton } from "common/components/backButton/BackButton";
 
 
 export const Cards: React.FC = () => {
@@ -33,6 +34,7 @@ export const Cards: React.FC = () => {
     console.log( packUserId );
     return (
         <div>
+            <BackButton/>
             <div style={ { display: "flex", justifyContent: "space-between", alignItems: "center" } }>
                 { profileId === packUserId
                     ?

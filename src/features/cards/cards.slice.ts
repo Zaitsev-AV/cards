@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CardType } from "features/cards/types";
-import { CardRequestType, cardsApi, CardsResponseType, QueryCardsParams } from "features/cards/cards.api";
+import {
+    CardRequestType,
+    cardsApi,
+    CardsResponseType,
+    QueryCardsParams,
+    UpdateCardType
+} from "features/cards/cards.api";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
 const initialState: InitialStateType = {
@@ -92,7 +98,27 @@ const createCard = createAppAsyncThunk<{ newCard: CardType }, CardRequestType>
     } );
 } );
 
+const updateCard = createAppAsyncThunk<{ updatedCard: CardType }, UpdateCardType>
+( "cards/createCard", ( arg, thunkAPI ) => {
+    const { dispatch, getState } = thunkAPI;
+    const id = getState().cards.queryParams.cardsPack_id;
+    return thunkTryCatch( thunkAPI, async () => {
+        await cardsApi.updateCard( arg );
+        dispatch( getCards( { id } ) );
+    } );
+} );
 
-export const cardsThunks = { getCards, createCard };
+const deleteCard = createAppAsyncThunk<{ deletedCard: CardType }, { _id: string }>
+( "cards/createCard", ( arg, thunkAPI ) => {
+    const { dispatch, getState } = thunkAPI;
+    const id = getState().cards.queryParams.cardsPack_id;
+    return thunkTryCatch( thunkAPI, async () => {
+        await cardsApi.deleteCard( arg._id );
+        dispatch( getCards( { id } ) );
+    } );
+} );
+
+
+export const cardsThunks = { getCards, createCard, updateCard, deleteCard };
 export const cardsReducer = slice.reducer;
 export const cardsActions = slice.actions;

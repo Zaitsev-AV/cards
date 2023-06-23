@@ -4,7 +4,7 @@ import { cardsActions, cardsThunks } from "features/cards/cards.slice";
 import { useNavigate, useParams } from "react-router-dom";
 import { selectPackUserId } from "features/cards/cards.selector";
 import { useCallback } from "react";
-import { CardRequestType } from "features/cards/cards.api";
+import { CardRequestType, UpdateCardType } from "features/cards/cards.api";
 //todo проверить пути импортов
 export const useCards = () => {
     const dispatch = useAppDispatch();
@@ -27,12 +27,20 @@ export const useCards = () => {
         dispatch(cardsThunks.createCard({ ...arg, cardsPack_id: cardsPackId}))
     };
     
+    const updateCard = (arg: UpdateCardType) => {
+    dispatch(cardsThunks.updateCard({...arg}))
+    };
+    const deleteCard = (_id: string) => {
+        dispatch(cardsThunks.deleteCard({_id}))
+    };
     
     return {
         fetchStudyCards,
         searchByCards,
         cards, packUserId, cardsPackId,
-        createNewCard
+        createNewCard,
+        updateCard,
+        deleteCard
     };
     
 };

@@ -11,7 +11,7 @@ export type CardsTableBodyData = {
     update: string
     grade: number
     userId: string
-    packId: string //проверить что за ид:
+    questionId: string //проверить что за ид:
 }
 export const CardsTable: React.FC = () => {
     const {cards} = useCards()
@@ -22,7 +22,7 @@ export const CardsTable: React.FC = () => {
             update: el.updated,
             grade: el.grade,
             userId: el.user_id,
-            packId: el._id //проверить что за ид
+            questionId: el._id //проверить что за ид
         };
     } );
 
