@@ -66,7 +66,16 @@ export const TableBodyRow: React.FC<TableBodyRowPropsType> = ( props ) => {
                 <td className={ classes.td }>{ created }</td>
                 <td className={ classes.td }>
                     {userId === profileId ? (
-                            <PackActions packId={packId} open={()=>setOpened(true)} />
+                            <>
+                                <MdDeleteOutline
+                                    size={20}
+                                    cursor="pointer"
+                                    onClick={()=>setOpened(true)}
+                                />
+                                <MdModelTraining size={20} cursor="pointer" />
+                                <TbPencilMinus size={20} cursor="pointer" onClick={open} />
+                            </>
+                            // <PackActions packId={packId} open={()=>setOpened(true)} />
                         )
                         : ( cards !== 0 && <MdModelTraining size={ 20 }
                                                         cursor={ "pointer" } /> ) }</td>

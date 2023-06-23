@@ -3,6 +3,9 @@ import { instance } from "common/api";
 export const cardsApi = {
     getCards: (params: QueryCardsParams)=>{
         return instance.get<CardsResponseType>( "/cards/card", { params } );
+    },
+    createCard: (arg: CardRequestType)=> {
+    return instance.post<{newCard: CardType}>("/cords/card", {card: arg})
     }
 }
 
@@ -55,4 +58,16 @@ export type QueryCardsParams = {
     sortCards?: string
     page?: number
     pageCount?: number
+}
+
+export type CardRequestType = {
+	cardsPack_id: string;
+	question: string;
+	answer: string;
+	grade?: number;
+	shots?: number;
+	answerImg?: string;
+	questionImg?: string;
+	questionVideo?: string;
+	answerVideo?: string;
 }

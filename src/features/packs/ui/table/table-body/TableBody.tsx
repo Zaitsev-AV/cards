@@ -44,6 +44,7 @@ export const TableBody: React.FC<TableBodyPropsType> = ({data}) => {
         <tbody className={ classes.tbody }>
         { data.map( ( row ) =>
             <TableBodyRow
+                key={row.packId}
                 name={ row.name }
                 cards={ row.cards }
                 update={ row.update }

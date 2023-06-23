@@ -4,7 +4,7 @@ import s from "./Header.module.css";
 import { AuthBtn } from "../buttons/AuthBtn";
 import { UserHeader } from "common/components/userHeader/UserHeader";
 import { useAuth } from "features/auth/hooks/useAuth";
-import { LinerProgress } from "common/components/LinerPogress/LinerProgress";
+import { LinerProgress } from "common/components/linerPogress/LinerProgress";
 import { useAppSelector } from "common/hooks";
 import { selectorIsLoading } from "app";
 

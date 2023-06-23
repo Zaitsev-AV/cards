@@ -2,7 +2,6 @@ import React from "react";
 import s from "./PacksList.module.css";
 import { usePackList } from "features/packs/hooks/usePackList";
 import { PackTable } from "features/packs/ui/table/PackTable";
-import { AddPackButton } from "features/packs/ui/buttons/AddPackButton";
 import { usePackListStatus } from "features/packs/hooks/usePackListStatus";
 import { Paginator } from "features/packs/ui/table/paginator/Paginator";
 import { PaginationSelect } from "common/components/select/PaginationSelect";
@@ -44,7 +43,6 @@ export const PacksList: React.FC = () => {
                 <ActionButton callback={ open }
                               text={ "Add new Pack" }
                               size={ "md" } />
-                {/*<AddPackButton />*/ }
             </div>
             <TableFilterPanel />
             <PackTable data={ data } />
