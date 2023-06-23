@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, UnstyledButton } from "@mantine/core";
 import { useCards } from "features/cards/hooks/useCards";
 import { useProfile } from "features/profile/hooks/useProfile";
+import { BsSortAlphaDown, BsSortAlphaUp } from "react-icons/bs";
+import { BiSortAlt2 } from "react-icons/bi";
 
 const useStyles = createStyles( ( theme ) => ( {
     
@@ -27,16 +29,31 @@ const useStyles = createStyles( ( theme ) => ( {
 
 export const CardsTableHeader: React.FC = () => {
     const { classes } = useStyles();
-    const { packUserId } = useCards();
+    const [ sortName, setSortName ] = useState<boolean | null>( null );
+    const { packUserId, sortByQuestion } = useCards();
     const { profileId } = useProfile();
-    
+    const onSortName = () => {
+        setSortName( !sortName );
+        if ( sortName ) {
+            sortByQuestion( "0" );// todo убрать магические числа
+        } else {
+            sortByQuestion( "1" );
+        }
+    };
+    const sortIcon = sortName !== null ? ( sortName ? <BsSortAlphaDown size={ 25 }
+                                                                       style={ { paddingLeft: "10px" } } /> :
+        <BsSortAlphaUp size={ 25 }
+                       style={ { paddingLeft: "10px" } } /> ) : <BiSortAlt2 size={ 25 }
+                                                                            style={ { paddingLeft: "10px" } } />;
     return (
         <thead className={ classes.thead }>
         <tr>
             <th>
                 <UnstyledButton
+                    onClick={onSortName}
                     className={ classes.control }>
                     Question
+                    {sortIcon}
                 </UnstyledButton>
             </th>
             <th>

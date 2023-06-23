@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { selectCards, selectCardsPackId, selectQueryParams } from "features/cards/index";
 import { cardsActions, cardsThunks } from "features/cards/cards.slice";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { selectPackUserId } from "features/cards/cards.selector";
 import { useCallback } from "react";
 import { CardRequestType, UpdateCardType } from "features/cards/cards.api";
@@ -20,7 +20,7 @@ export const useCards = () => {
     }, []);
     
     const searchByCards = ( value: string ) => {
-        dispatch(cardsActions.setQueryParams( { cardsPack_id: queryParams.cardsPack_id,cardQuestion: value } ));
+        dispatch(cardsActions.setQueryParams( { cardsPack_id: cardsPackId,cardQuestion: value } ));
     };
     
     const createNewCard = (arg: CardRequestType) => {
@@ -30,8 +30,13 @@ export const useCards = () => {
     const updateCard = (arg: UpdateCardType) => {
     dispatch(cardsThunks.updateCard({...arg}))
     };
+    
     const deleteCard = (_id: string) => {
         dispatch(cardsThunks.deleteCard({_id}))
+    };
+    
+    const sortByQuestion = ( value: string) => {
+        dispatch(cardsActions.setQueryParams({sortCards: `${value}question`, cardsPack_id: cardsPackId}))
     };
     
     return {
@@ -40,7 +45,8 @@ export const useCards = () => {
         cards, packUserId, cardsPackId,
         createNewCard,
         updateCard,
-        deleteCard
+        deleteCard,
+        sortByQuestion
     };
     
 };
