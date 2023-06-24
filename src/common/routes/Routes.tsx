@@ -7,6 +7,7 @@ import { AuthRedirect } from "common/components/authRedirect/AuthRedirect";
 import { Auth } from "features/auth/Auth";
 import { PacksList } from "features/packs/PacksList";
 import { Cards } from "features/cards/Cards";
+import { Learn } from "features/learn/Learn";
 
 export const router = createBrowserRouter([
 	{
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
 					{
 						path:'/cards/:packId',
 						element: <Cards/>
+					},
+					{
+						path: '/learn',
+						element: <Learn/>
 					}
 				]
 			},
