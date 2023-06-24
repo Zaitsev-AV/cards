@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { Input, Modal, Select, useMantineTheme } from "@mantine/core";
 import { ActionButton } from "common/components/buttons/ActionButton";
-import { useCards } from "features/cards/hooks/useCards";
 
 type AddCardsModalPropsType = {
     opened: boolean

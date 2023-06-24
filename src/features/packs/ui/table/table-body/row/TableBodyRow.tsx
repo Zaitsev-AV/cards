@@ -3,12 +3,10 @@ import { MdDeleteOutline, MdModelTraining } from "react-icons/md";
 import { TbPencilMinus } from "react-icons/tb";
 import { toast } from "react-toastify";
 import { useProfile } from "features/profile/hooks/useProfile";
-import { useCards } from "features/cards/hooks/useCards";
 import { usePackList } from "features/packs/hooks/usePackList";
 import { createStyles } from "@mantine/core";
 import { Modals } from "common/components/Modals/Modals";
 import { useDisclosure } from "@mantine/hooks";
-import { PackActions } from "features/packs/ui/table/table-body/row/PackActions";
 import { PackInfo } from "features/packs/ui/table/table-body/row/PackInfo";
 import { DeleteModal } from "common/components/Modals/DeleteModal";
 

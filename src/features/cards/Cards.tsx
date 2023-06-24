@@ -12,6 +12,7 @@ import { useProfile } from "features/profile/hooks/useProfile";
 import { AddCardsModals } from "common/components/Modals/AddCardsModals";
 import { useDisclosure } from "@mantine/hooks";
 import { BackButton } from "common/components/backButton/BackButton";
+import { DropdownMenu } from "common/components/dropdownMenu/DropdownMenu";
 
 
 export const Cards: React.FC = () => {
@@ -39,7 +40,10 @@ export const Cards: React.FC = () => {
                 { profileId === packUserId
                     ?
                     <>
-                        <h1>My Pack</h1>
+                        <h1 style={{display: "flex", alignItems: "center"}}>
+                            My Pack
+                            <DropdownMenu/>
+                        </h1>
                         <ActionButton callback={ open }
                                       size={ "md" }
                                       text={ "Add new Card" } />
